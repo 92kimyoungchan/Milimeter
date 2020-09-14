@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 팝업*/
+/* ===================== Modal ===================== */
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -8,82 +8,90 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  display: table;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.modal-mask .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-mask .modal-wrapper .modal-container {
+.modal-wrapper .modal-container {
   border-radius: 14px;
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   background-color: rgba(248, 248, 248, 0.82);
   width: 260px;
   min-height: 210px;
-  margin: 0px auto 75px;
+  margin: 0px auto;
   padding: 0;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.modal-mask .modal-wrapper .modal-container.topImg .modal_imgWrap {
+.modal-wrapper .modal-container.topImg .modal_imgWrap {
   margin-top: -60px;
 }
 
-.modal-mask .modal-wrapper .modal-container.longHeight .modal-body div {
+.modal-wrapper .modal-container.longHeight .modal-body div {
   min-height: 220px;
 }
 
-.modal-mask .modal-wrapper .modal-container.bigModal {
+.modal-wrapper .modal-container.bigModal {
   width: 90%;
   height: 80%;
   max-width: 500px;
   max-height: 500px;
 }
 
-.modal-mask .modal-wrapper .modal-container.bigModal .modal-body div {
+.modal-wrapper .modal-container.bigModal .modal-body div {
   max-height: 370px;
   overflow-y: scroll;
 }
 
-.modal-mask .modal-wrapper .modal-container.bigModal .modal-body div p {
+.modal-wrapper .modal-container.bigModal .modal-body div p {
   margin-bottom: 7px;
 }
 
-.modal-mask .modal-wrapper .modal-container.bigModal .modal-body div p b {
+.modal-wrapper .modal-container.bigModal .modal-body div p b {
   font-weight: bold;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-header {
+.modal-wrapper .modal-container .modal-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  width: 100%;
   position: relative;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-header h3 {
+.modal-wrapper .modal-container .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-header .modal_closeBtn {
+.modal-wrapper .modal-container .modal-header .modal_closeBtn {
   position: absolute;
   right: 0;
   cursor: pointer;
   top: 0;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-flex {
+.modal-wrapper .modal-container .modal-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -92,16 +100,16 @@
       flex-wrap: wrap;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-flex p {
+.modal-wrapper .modal-container .modal-flex p {
   width: 100%;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-flex .modal-body {
+.modal-wrapper .modal-container .modal-flex .modal-body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body {
+.modal-wrapper .modal-container .modal-body {
   padding: 12px 10px;
   width: 100%;
   display: -webkit-box;
@@ -115,11 +123,11 @@
           justify-content: center;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body div {
+.modal-wrapper .modal-container .modal-body div {
   width: 100%;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body h3 {
+.modal-wrapper .modal-container .modal-body h3 {
   font-family: AppleSDGothicNeoM00;
   font-size: 17px;
   font-weight: normal;
@@ -132,11 +140,11 @@
   margin-bottom: 10px;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body h3.withInput {
+.modal-wrapper .modal-container .modal-body h3.withInput {
   margin: 20px 0;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body h2 {
+.modal-wrapper .modal-container .modal-body h2 {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.45;
@@ -144,7 +152,7 @@
   padding-bottom: 5px;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body span {
+.modal-wrapper .modal-container .modal-body span {
   font-size: 13px;
   font-weight: normal;
   font-stretch: normal;
@@ -155,7 +163,7 @@
   color: #000000;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body p {
+.modal-wrapper .modal-container .modal-body p {
   font-family: AppleSDGothicNeoM00;
   font-size: 13px;
   font-weight: normal;
@@ -167,20 +175,20 @@
   color: #000000;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-body p.red {
+.modal-wrapper .modal-container .modal-body p.red {
   color: #ff6565;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer {
+.modal-wrapper .modal-container .modal-footer {
   text-decoration: none;
   color: #999;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   left: 0;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modalInput {
+.modal-wrapper .modal-container .modal-footer .modalInput {
   padding-bottom: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -195,7 +203,7 @@
       flex-wrap: wrap;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modalInput span {
+.modal-wrapper .modal-container .modal-footer .modalInput span {
   font-size: 0.625rem;
   display: block;
   color: #ff6565;
@@ -204,7 +212,7 @@
   padding: 0 12px 2px 0;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modalInput textarea {
+.modal-wrapper .modal-container .modal-footer .modalInput textarea {
   width: 100%;
   max-width: 238px;
   height: 50px;
@@ -217,11 +225,11 @@
   font-style: normal;
   line-height: 1.38;
   letter-spacing: 0px;
-  font-family: "AppleSDGothicNeoM00";
+  font-family: AppleSDGothicNeoM00;
   padding: 4px;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_btnWrap {
+.modal-wrapper .modal-container .modal-footer .modal_btnWrap {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -230,16 +238,22 @@
       flex-wrap: wrap;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_btnWrap.single button {
+.modal-wrapper .modal-container .modal-footer .modal_btnWrap.hide {
+  position: absolute;
+  opacity: 0;
+  bottom: -62px;
+}
+
+.modal-wrapper .modal-container .modal-footer .modal_btnWrap.single button {
   width: 100%;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_btnWrap button {
+.modal-wrapper .modal-container .modal-footer .modal_btnWrap button {
   border: 0;
   color: #ff7f1f;
   height: 52px;
   font-weight: 500;
-  font-family: "AppleSDGothicNeoM00";
+  font-family: AppleSDGothicNeoM00;
   font-size: 17px;
   cursor: pointer;
   padding: 0;
@@ -255,11 +269,11 @@
   background-color: transparent;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_btnWrap button:last-of-type {
+.modal-wrapper .modal-container .modal-footer .modal_btnWrap button:last-of-type {
   border-right: 0;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_outSide {
+.modal-wrapper .modal-container .modal-footer .modal_outSide {
   position: absolute;
   bottom: -62px;
   left: 0;
@@ -281,7 +295,7 @@
   cursor: pointer;
 }
 
-.modal-mask .modal-wrapper .modal-container .modal-footer .modal_outSide button {
+.modal-wrapper .modal-container .modal-footer .modal_outSide button {
   border: 0;
   background-color: #2a2a2a;
   color: #fff;
@@ -307,29 +321,119 @@
   transform: scale(1.1);
 }
 
-.divider {
-  position: absolute;
+/* 커스텀 팝업*/
+.inImgPop-topImg {
+  margin: 20px auto;
   width: 100%;
-  height: 12px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(rgba(0, 0, 0, 0.16)));
-  background: linear-gradient(to bottom, #eeeeee, rgba(0, 0, 0, 0.16));
-  left: 0;
-  margin: -20px 0 0 0;
+  text-align: center;
 }
 
-h3.notice-subtitle {
+.inImgPop-topBody .article {
+  margin: 30px 0 0 0;
+}
+
+.inImgPop-topBody .article:first-of-type {
+  margin: 0;
+}
+
+.inImgPop-topBody .article h3.a-title {
   font-family: AppleSDGothicNeoM00;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 19px;
+  line-height: 17px;
   letter-spacing: normal;
   text-align: center;
-  color: #434343;
-  margin: 0 0 30px 0;
+  color: #fe6867;
+  margin: 0 0 10px 0;
 }
 
+.inImgPop-topBody .article p {
+  font-family: AppleSDGothicNeoM00;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #343434;
+}
+
+/* ===================== Footer ===================== */
+div#main-footer {
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+}
+
+div#main-footer .mf-navigation {
+  padding-top: 8px;
+  padding-bottom: 4px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+div#main-footer .mf-navigation a {
+  min-width: 60px;
+}
+
+div#main-footer .mf-navigation .mf-nav-icon-wrap {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+div#main-footer .mf-navigation .mf-nav-icon-wrap span {
+  margin-top: 7px;
+  font-family: AppleSDGothicNeoR00;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.42;
+  letter-spacing: normal;
+  text-align: left;
+  color: #bcbcbc;
+}
+
+div#main-footer .mf-navigation .mf-nav-icon-wrap.active::before {
+  position: absolute;
+  top: 0;
+  content: "";
+  width: 27px;
+  height: 2px;
+  background-color: #ff7f1f;
+}
+
+div#main-footer .mf-navigation .mf-nav-icon-wrap.active span {
+  color: #ff7f1f;
+}
+
+/* ===================== Rating ===================== */
 .star-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -356,7 +460,7 @@ h3.notice-subtitle {
   padding-right: 0;
 }
 
-/** 셀렉트 박스 */
+/* ===================== SelectBox ===================== */
 .style-chooser .vs__search::-webkit-input-placeholder,
 .style-chooser .vs__dropdown-toggle,
 .style-chooser .vs__dropdown-menu {
@@ -397,5 +501,18 @@ h3.notice-subtitle {
 .style-chooser .vs__clear,
 .style-chooser .vs__open-indicator {
   fill: #394066;
+}
+
+/* =====================  ===================== */
+@media screen and (min-width: 500px) {
+  #app {
+    max-width: 360px;
+    width: 100%;
+    max-height: 812px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #ccc;
+  }
 }
 /*# sourceMappingURL=common.css.map */

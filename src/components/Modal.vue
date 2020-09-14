@@ -1,9 +1,9 @@
 <template>
   <transition name="modal">
     <div class="modal-mask" @click="overlayClick($event)">
-      <div class="modal-wrapper" :style="{ height: screenHeight }">
+      <div class="modal-wrapper">
         <div class="modal-container" @click.stop>
-          <div class="modal-flex" :style="computedModalContentHeight">
+          <div class="modal-flex">
             <div class="modal-header">
               <slot name="header"></slot>
             </div>

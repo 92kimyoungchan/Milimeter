@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-/* 팝업*/
-
+/* ===================== Modal ===================== */
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -10,271 +9,275 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  display: table;
+  display: flex;
   transition: opacity 0.3s ease;
+  align-items: center;
+  justify-content: center;
+}
+.modal-wrapper {
+  .modal-container {
+    border-radius: 14px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background-color: rgba(248, 248, 248, 0.82);
+    width: 260px;
+    min-height: 210px;
+    margin: 0px auto;
+    padding: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    &.topImg {
+      .modal_imgWrap {
+        margin-top: -60px;
+      }
+    }
 
-  .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-
-    .modal-container {
-      border-radius: 14px;
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-      background-color: rgba(248, 248, 248, 0.82);
-      width: 260px;
-      min-height: 210px;
-      margin: 0px auto 75px;
-      padding: 0;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      &.topImg {
-        .modal_imgWrap {
-          margin-top: -60px;
+    &.longHeight {
+      .modal-body {
+        div {
+          min-height: 220px;
         }
       }
+    }
 
-      &.longHeight {
-        .modal-body {
-          div {
-            min-height: 220px;
-          }
-        }
-      }
+    &.bigModal {
+      width: 90%;
+      height: 80%;
+      max-width: 500px;
+      max-height: 500px;
 
-      &.bigModal {
-        width: 90%;
-        height: 80%;
-        max-width: 500px;
-        max-height: 500px;
+      .modal-body {
+        div {
+          max-height: 370px;
+          overflow-y: scroll;
 
-        .modal-body {
-          div {
-            max-height: 370px;
-            overflow-y: scroll;
+          p {
+            margin-bottom: 7px;
 
-            p {
-              margin-bottom: 7px;
-
-              b {
-                font-weight: bold;
-              }
+            b {
+              font-weight: bold;
             }
           }
         }
       }
+    }
 
-      .modal-header {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        h3 {
-          margin-top: 0;
-          color: #42b983;
-        }
-
-        .modal_closeBtn {
-          position: absolute;
-          right: 0;
-          cursor: pointer;
-          top: 0;
-        }
+    .modal-header {
+      display: flex;
+      width: 100%;
+      position: relative;
+      h3 {
+        margin-top: 0;
+        color: #42b983;
       }
-      .modal-flex {
-        display: flex;
-        height: calc(100% - 52px);
-        flex-wrap: wrap;
-        p {
-          width: 100%;
-        }
-        .modal-body {
-          flex-wrap:wrap;
-        }
+
+      .modal_closeBtn {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        top: 0;
+      }
+    }
+    .modal-flex {
+      display: flex;
+      height: calc(100% - 52px);
+      flex-wrap: wrap;
+      p {
+        width: 100%;
       }
       .modal-body {
-        padding: 12px 10px;
+        flex-wrap: wrap;
+      }
+    }
+    .modal-body {
+      padding: 12px 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      div {
+        width: 100%;
+      }
+      h3 {
+        font-family: AppleSDGothicNeoM00;
+        font-size: 17px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: -0.01px;
+        text-align: center;
+        color: #000000;
+        margin-bottom: 10px;
+        &.withInput {
+          margin: 20px 0;
+        }
+      }
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.45;
+        color: #707070;
+        padding-bottom: 5px;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #000000;
+      }
+
+      p {
+        font-family: AppleSDGothicNeoM00;
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #000000;
+
+        &.red {
+          color: #ff6565;
+        }
+      }
+    }
+
+    .modal-footer {
+      text-decoration: none;
+      color: #999;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      .modalInput {
+        padding-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        span {
+          font-size: 0.625rem;
+          display: block;
+          color: #ff6565;
+          width: 100%;
+          text-align: right;
+          padding: 0 12px 2px 0;
+        }
+
+        textarea {
+          width: 100%;
+          max-width: 238px;
+          height: 50px;
+          border: solid 0.5px #8e8e93;
+          background-color: #ffffff;
+          color: #000;
+          font-size: 13px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.38;
+          letter-spacing: 0px;
+          font-family: AppleSDGothicNeoM00;
+          padding: 4px;
+        }
+      }
+
+      .modal_btnWrap {
         width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        div {
-          width: 100%;
+        flex-wrap: wrap;
+        &.hide {
+          position: absolute;
+          opacity: 0;
+          bottom: -62px;
         }
-        h3 {
+        &.single {
+          button {
+            width: 100%;
+          }
+        }
+
+        &.triple {
+          button {
+            &:first-of-type {
+            }
+
+            &:last-of-type {
+            }
+          }
+        }
+
+        button {
+          border: 0;
+          color: #ff7f1f;
+          height: 52px;
+          font-weight: 500;
           font-family: AppleSDGothicNeoM00;
           font-size: 17px;
+          cursor: pointer;
+          padding: 0;
           font-weight: normal;
           font-stretch: normal;
           font-style: normal;
           line-height: 1.29;
           letter-spacing: -0.01px;
           text-align: center;
-          color: #000000;
-          margin-bottom: 10px;
-          &.withInput {
-            margin: 20px 0;
+          width: calc(100% / 2);
+          border-top: 0.5px solid #3f3f3f;
+          border-right: 0.5px solid #3f3f3f;
+          background-color: transparent;
+
+          &.cancel {
           }
-        }
-        h2 {
-          font-size: 1.25rem;
-          font-weight: 500;
-          line-height: 1.45;
-          color: #707070;
-          padding-bottom: 5px;
-        }
 
-        span {
-          font-size: 13px;
-          font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: 1.38;
-          letter-spacing: 0px;
-          text-align: center;
-          color: #000000;
-        }
+          &.confirm {
+            &:disabled {
+            }
+          }
 
-        p {
-          font-family: AppleSDGothicNeoM00;
-          font-size: 13px;
-          font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: 1.38;
-          letter-spacing: 0px;
-          text-align: center;
-          color: #000000;
+          &:first-of-type {
+          }
 
-          &.red {
-            color: #ff6565;
+          &:last-of-type {
+            border-right: 0;
           }
         }
       }
-
-      .modal-footer {
-        text-decoration: none;
-        color: #999;
+      .modal_outSide {
         position: absolute;
-        bottom: 0;
-        width: 100%;
+        bottom: -62px;
         left: 0;
-        .modalInput {
-          padding-bottom: 15px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-wrap: wrap;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        background-color: #2a2a2a;
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
 
-          span {
-            font-size: 0.625rem;
-            display: block;
-            color: #ff6565;
-            width: 100%;
-            text-align: right;
-            padding: 0 12px 2px 0;
-          }
-
-          textarea {
-            width: 100%;
-            max-width: 238px;
-            height: 50px;
-            border: solid 0.5px #8e8e93;
-            background-color: #ffffff;
-            color: #000;
-            font-size: 13px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.38;
-            letter-spacing: 0px;
-            font-family: "AppleSDGothicNeoM00";
-            padding: 4px;
-          }
-        }
-
-        .modal_btnWrap {
-          width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-
-          &.single {
-            button {
-              width: 100%;
-            }
-          }
-
-          &.triple {
-            button {
-              &:first-of-type {
-              }
-
-              &:last-of-type {
-              }
-            }
-          }
-
-          button {
-            border: 0;
-            color: #ff7f1f;
-            height: 52px;
-            font-weight: 500;
-            font-family: "AppleSDGothicNeoM00";
-            font-size: 17px;
-            cursor: pointer;
-            padding: 0;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.29;
-            letter-spacing: -0.01px;
-            text-align: center;
-            width: calc(100% / 2);
-            border-top: 0.5px solid #3f3f3f;
-            border-right: 0.5px solid #3f3f3f;
-            background-color: transparent;
-
-            &.cancel {
-            }
-
-            &.confirm {
-              &:disabled {
-              }
-            }
-
-            &:first-of-type {
-            }
-
-            &:last-of-type {
-              border-right: 0;
-            }
-          }
-        }
-        .modal_outSide {
-          position: absolute;
-          bottom: -62px;
-          left: 0;
-          border-radius: 5px;
-          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+        button {
+          border: 0;
           background-color: #2a2a2a;
-          padding: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
+          color: #fff;
+          font-family: NotoSansCJKkr;
+          font-size: 1.25rem;
+          font-weight: 500;
+          line-height: 1.43;
+          padding-left: 17px;
           cursor: pointer;
-
-          button {
-            border: 0;
-            background-color: #2a2a2a;
-            color: #fff;
-            font-family: NotoSansCJKkr;
-            font-size: 1.25rem;
-            font-weight: 500;
-            line-height: 1.43;
-            padding-left: 17px;
-            cursor: pointer;
-          }
         }
       }
     }
@@ -291,27 +294,109 @@
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-.divider {
-  position: absolute;
+
+/* 커스텀 팝업*/
+
+.inImgPop-topImg {
+  margin: 20px auto;
   width: 100%;
-  height: 12px;
-  background: linear-gradient(to bottom, #eeeeee, rgba(0, 0, 0, 0.16));
-  left: 0;
-  margin: -20px 0 0 0;
+  text-align: center;
+  .imgWrap {
+    img {
+    }
+  }
+}
+.inImgPop-topBody {
+  .article {
+    margin: 30px 0 0 0;
+    &:first-of-type {
+      margin: 0;
+    }
+    h3.a-title {
+      font-family: AppleSDGothicNeoM00;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 17px;
+      letter-spacing: normal;
+      text-align: center;
+      color: #fe6867;
+      margin: 0 0 10px 0;
+    }
+    p {
+      font-family: AppleSDGothicNeoM00;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-align: center;
+      color: #343434;
+    }
+  }
+}
+/* ===================== Footer ===================== */
+div#main-footer {
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  object-fit: contain;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  .mf-navigation {
+    padding-top: 8px;
+    padding-bottom: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    a {
+      min-width: 60px;
+    }
+    .mf-nav-icon-wrap {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      .mf-nav-icon {
+      }
+      span {
+        margin-top: 7px;
+        font-family: AppleSDGothicNeoR00;
+        font-size: 12px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: left;
+        color: #bcbcbc;
+      }
+
+      &.active {
+        &::before {
+          position: absolute;
+          top: 0;
+          content: "";
+          width: 27px;
+
+          height: 2px;
+          background-color: #ff7f1f;
+        }
+        .mf-nav-icon {
+        }
+        span {
+          color: #ff7f1f;
+        }
+      }
+    }
+  }
 }
 
-h3.notice-subtitle {
-  font-family: AppleSDGothicNeoM00;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 19px;
-  letter-spacing: normal;
-  text-align: center;
-  color: #434343;
-  margin: 0 0 30px 0;
-}
+/* ===================== Rating ===================== */
 .star-wrap {
   display: flex;
   justify-content: center;
@@ -324,12 +409,6 @@ h3.notice-subtitle {
     }
   }
 }
-
-// 별점 custom
-// .vue-star-rating-rating-text {
-//   display: none;
-// }
-
 .vue-star-rating-pointer {
   padding-right: 5px;
   &:last-of-type {
@@ -337,8 +416,7 @@ h3.notice-subtitle {
   }
 }
 
-
-/** 셀렉트 박스 */
+/* ===================== SelectBox ===================== */
 .style-chooser .vs__search::placeholder,
 .style-chooser .vs__dropdown-toggle,
 .style-chooser .vs__dropdown-menu {
@@ -352,4 +430,18 @@ h3.notice-subtitle {
 .style-chooser .vs__clear,
 .style-chooser .vs__open-indicator {
   fill: #394066;
+}
+
+/* =====================  ===================== */
+
+@media screen and (min-width: 500px) {
+  #app {
+    max-width: 360px;
+    width: 100%;
+    max-height: 812px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #ccc;
+  }
 }

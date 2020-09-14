@@ -10,8 +10,8 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
-    path: "/test",
-    component: () => import("@/views/sample/TestPage.vue"),
+    path: "/Sample",
+    component: () => import("@/views/sample/Function.vue"),
     meta: { unauthorized: true }
   },
   {
