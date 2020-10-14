@@ -20,6 +20,11 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
+    path: "/Test2",
+    component: () => import("@/views/sample/TestPage2.vue"),
+    meta: { unauthorized: true }
+  },
+  {
     path: "/error",
     component: Error,
     meta: { unauthorized: true }
