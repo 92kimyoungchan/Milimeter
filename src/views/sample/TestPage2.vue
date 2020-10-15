@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       clientId:
-        "56019965047-0t3qrkpa4420if93b557lp6ub32ah2e4.apps.googleusercontent.com&KzUWksdB5Eu66LNLhub7B2s4"
+        "56019965047-0t3qrkpa4420if93b557lp6ub32ah2e4.apps.googleusercontent.com"
     };
   },
   created() {},
