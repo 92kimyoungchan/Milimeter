@@ -10,8 +10,28 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
-    path: "/test",
+    path: "/Sample",
+    component: () => import("@/views/sample/Function.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/Test",
     component: () => import("@/views/sample/TestPage.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/Test2",
+    component: () => import("@/views/sample/TestPage2.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/Test3",
+    component: () => import("@/views/sample/TestPage3.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/Test4",
+    component: () => import("@/views/sample/TestPage4.vue"),
     meta: { unauthorized: true }
   },
   {

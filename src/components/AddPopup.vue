@@ -21,12 +21,14 @@
         <img src="@/assets/images/x_popup.svg" @click.prevent="mobileDeleteAuth()" />
       </div>
       -->
+      <div class="inImgPop-topImg" v-if="count === 'inImgPop'">
+        <div class="imgWrap">
+          <img :src="require(`@/assets/images/${modalImg}`)" />
+        </div>
+      </div>
     </template>
     <template v-slot:body>
-      <h3
-        v-html="titleTransed"
-        :class="{ withInput: count === 'causeActionInput' }"
-      ></h3>
+      <h3 v-html="titleTransed" :class="{ withInput: count === 'causeActionInput' }"></h3>
       <div class="star-wrap" v-if="count === 'rating'">
         <div class="sw-img">
           <star-rating
@@ -40,10 +42,14 @@
           ></star-rating>
         </div>
       </div>
-      <p v-html="modalBody"></p>
-      <span v-if="count === 'causeActionInput'"
-        >문의사항 ({{ inputCount }} / 100)</span
-      >
+      <div class="inImgPop-topBody" v-if="count === 'inImgPop'">
+        <div class="article" v-for="(popItem, index) in inPopItem" :key="index">
+          <h3 class="a-title">{{ popItem.title }}</h3>
+          <p>{{ popItem.content }}</p>
+        </div>
+      </div>
+      <p v-html="bodyTransed"></p>
+      <span v-if="count === 'causeActionInput'">문의사항 ({{ inputCount }} / 100)</span>
     </template>
     <template v-slot:footer>
       <div class="modal_btnWrap single" v-if="count === 'single'">
@@ -54,14 +60,24 @@
           v-text="confirmBtnText"
         ></button>
       </div>
-      <div class="modal_btnWrap double" v-if="count === 'double'">
+      <div class="modal_btnWrap single" v-if="count === 'rating'">
         <button
-          class="btn cancel"
+          class="btn confirm"
+          :type="btnType"
           @click.prevent="SET_POPUP(false)"
-          v-text="cancelBtnText"
-        >
-          취소
-        </button>
+          v-text="confirmBtnText"
+        ></button>
+      </div>
+      <div class="modal_btnWrap hide" v-if="count === 'inImgPop'">
+        <button
+          class="btn confirm"
+          :type="btnType"
+          @click.prevent="inPopClose()"
+          v-text="confirmBtnText"
+        ></button>
+      </div>
+      <div class="modal_btnWrap double" v-if="count === 'double'">
+        <button class="btn cancel" @click.prevent="SET_POPUP(false)" v-text="cancelBtnText">취소</button>
         <button
           class="btn confirm"
           :type="btnType"
@@ -90,7 +106,7 @@
           @click.prevent="btnMoveClosed()"
         ></button>
       </div>
-    </div>-->
+      </div>-->
       <div class="modal_btnWrap single" v-if="count === 'another'">
         <button
           class="btn confirm"
@@ -149,13 +165,7 @@
       <div v-if="count === 'causeActionInput'">
         <div class="modalInput" v-if="onInput">
           <span v-if="!inputError">*내용을 입력해주세요.</span>
-          <textarea
-            type="text"
-            v-model="checkInput"
-            id="onInput"
-            ref="checkInput"
-            maxlength="100"
-          />
+          <textarea type="text" v-model="checkInput" id="onInput" ref="checkInput" maxlength="100" />
         </div>
         <div class="modal_btnWrap double">
           <button
@@ -207,6 +217,9 @@ export default {
       },
       modalImg: {
         type: String
+      },
+      inPopItem: {
+        type: Array
       },
       content: {
         type: String
@@ -284,7 +297,7 @@ export default {
       nextLink_another: this.popupSet.nextLink_another,
       closeType: this.popupSet.closeType,
       closeLink: this.popupSet.closeLink,
-
+      inPopItem: this.popupSet.inPopItem,
       currentURL: this.popupSet.currentURL,
       popHistory: this.popupSet.popHistory,
       checkInput: "",
@@ -332,7 +345,18 @@ export default {
   computed: {
     ...mapState("basic", ["checkPopup"]),
     titleTransed() {
-      return this.modalTitle.split("\n").join("<br />");
+      if (this.modalTitle !== undefined) {
+        return this.modalTitle.split("\n").join("<br />");
+      } else {
+        return "";
+      }
+    },
+    bodyTransed() {
+      if (this.modalBody !== undefined) {
+        return this.modalBody.split("\n").join("<br />");
+      } else {
+        return "";
+      }
     }
   },
   methods: {
@@ -391,6 +415,10 @@ export default {
     },
     closeAction() {
       this.$router.push(this.closeLink);
+      this.SET_POPUP(false);
+    },
+    inPopClose() {
+      this.inPopItem = undefined;
       this.SET_POPUP(false);
     },
     prevAction() {

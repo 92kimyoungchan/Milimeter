@@ -148,6 +148,11 @@ a {
           text-decoration-line: none;
 }
 
+.app-wrap {
+  padding: 0;
+  margin: 0;
+}
+
 .app-context {
   font-size: 17px;
   padding: 85px 24px 30px 24px;
