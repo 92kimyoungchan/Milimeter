@@ -14,6 +14,11 @@ const routes = [
     component: () => import("@/views/sample/Function.vue"),
     meta: { unauthorized: true }
   },
+    {
+    path: "/about",
+    component: () => import("@/views/about/AboutMilimeter.vue"),
+    meta: { unauthorized: true }
+  },
   {
     path: "/Test",
     component: () => import("@/views/sample/TestPage.vue"),

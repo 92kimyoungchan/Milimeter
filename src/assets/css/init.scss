@@ -137,7 +137,14 @@ table {
 a {
   text-decoration-line: none;
 }
-
+#app { 
+}
+.container {
+ height: 970px;
+    width: 390px;
+    position: relative;
+    margin: 0 auto;
+}
 .app-wrap {
   padding: 0;
   margin: 0;
@@ -150,25 +157,25 @@ a {
 .scaleH1 {
   font-family: "AppleSDGothicNeoB00";
   line-height: 34px;
-  size: 24px;
+  font-size: 24px;
 }
 .scaleTitle {
   font-family: "AppleSDGothicNeoSB00";
   line-height:28px;
-  size: 20px;
+  font-size: 20px;
 }
 .scaleSubtitle {
   font-family: "AppleSDGothicNeoSB00";
   line-height:24px;
-  size: 18px;
+  font-size: 18px;
 }
 .scaleBody {
   font-family: "AppleSDGothicNeoR00";
   line-height:22px;
-  size: 16px;
+  font-size: 16px;
 }
 .scaleCaption {
   font-family: "AppleSDGothicNeoR00";
   line-height:20px;
-  size: 14px;
+  font-size: 14px;
 }
