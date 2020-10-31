@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="meal_img" width="90.904" height="87.027" viewBox="0 0 90.904 87.027">
+    <defs>
+        <style>
+            .cls-2{fill:#5fbb92}.cls-3{opacity:.5}.cls-4{fill:#68d891}
+        </style>
+    </defs>
+    <g id="그룹_3" opacity="0.1" transform="translate(7.5)">
+        <g id="그룹_2">
+            <circle id="타원_1" cx="37.964" cy="37.964" r="37.964" class="cls-2"/>
+        </g>
+    </g>
+    <g id="그룹_6" class="cls-3" transform="translate(0 35.58)">
+        <g id="그룹_4">
+            <path id="패스_11" d="M135.954 95.73h-16.065c-23.177-1.4-35.178-20.925-36.581-38.461a8.69 8.69 0 0 1 2.115-6.611 7.04 7.04 0 0 1 5.246-2.274h81.122a2.384 2.384 0 1 1 0 4.769H90.67a2.251 2.251 0 0 0-1.744.728 4.012 4.012 0 0 0-.864 3c1.243 15.565 11.774 32.866 31.964 34.086h15.929a31.524 31.524 0 0 0 23.29-9.848 39.4 39.4 0 0 0 9.984-22.519 2.29 2.29 0 0 1 2.638-2.077 2.379 2.379 0 0 1 2.085 2.646 44.077 44.077 0 0 1-11.2 25.178 36.318 36.318 0 0 1-26.798 11.383z" class="cls-2" transform="translate(-83.276 -48.384)"/>
+        </g>
+        <g id="그룹_5" transform="translate(32.826 46.404)">
+            <path id="사각형_1" d="M0 0h25.276v1.043a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V0z" class="cls-2"/>
+        </g>
+    </g>
+    <g id="그룹_5449" class="cls-3" transform="translate(-142.041 -362.563)">
+        <path id="사각형_4269" d="M0 0H3.632V6.488H0z" class="cls-4" transform="rotate(144 38.457 218.042)"/>
+        <path id="사각형_4270" fill="#a2c8f6" d="M0 0H3.632V6.488H0z" transform="rotate(144 45.06 228.28)"/>
+        <path id="사각형_4271" d="M0 0H3.632V7.488H0z" class="cls-4" transform="rotate(53.98 -268.666 353.046)"/>
+        <circle id="타원_1001" cx="2.928" cy="2.928" r="2.928" fill="#ff9d95" transform="rotate(180 82.383 187.954)"/>
+        <circle id="타원_1002" cx="3.428" cy="3.428" r="3.428" fill="#ffee8d" transform="rotate(180 105.025 185.803)"/>
+        <path id="패스_19042" fill="none" stroke="#a2c8f6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" d="M0 0l2.817 2.129L0 4.269l2.817 2.4L0 9.194l2.817 2.347L0 13.781" transform="rotate(-140 157.775 157.623)"/>
+    </g>
+</svg>

@@ -20,6 +20,11 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
+    path: "/connection",
+    component: () => import("@/views/sample/Connection.vue"),
+    meta: { unauthorized: true }
+  },
+  {
     path: "*",
     redirect: "/error",
     meta: { unauthorized: true }

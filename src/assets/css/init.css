@@ -86,7 +86,6 @@ select {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: "AppleSDGothicNeoM00";
   vertical-align: baseline;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -114,6 +113,7 @@ section {
 body {
   line-height: 1;
   margin: 0;
+  font-family: "jua";
 }
 
 ol,
@@ -151,5 +151,35 @@ a {
 .app-context {
   font-size: 17px;
   padding: 85px 24px 30px 24px;
+}
+
+.scaleH1 {
+  font-family: "AppleSDGothicNeoB00";
+  line-height: 34px;
+  size: 24px;
+}
+
+.scaleTitle {
+  font-family: "AppleSDGothicNeoSB00";
+  line-height: 28px;
+  size: 20px;
+}
+
+.scaleSubtitle {
+  font-family: "AppleSDGothicNeoSB00";
+  line-height: 24px;
+  size: 18px;
+}
+
+.scaleBody {
+  font-family: "AppleSDGothicNeoR00";
+  line-height: 22px;
+  size: 16px;
+}
+
+.scaleCaption {
+  font-family: "AppleSDGothicNeoR00";
+  line-height: 20px;
+  size: 14px;
 }
 /*# sourceMappingURL=init.css.map */

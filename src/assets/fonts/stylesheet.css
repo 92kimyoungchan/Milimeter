@@ -113,3 +113,18 @@
 	url('AppleSDGothicNeoR/AppleSDGothicNeoR.eot?#iefix') format('embedded-opentype'),
 	url('AppleSDGothicNeoR/AppleSDGothicNeoR.woff') format('woff');
 }
+
+@font-face {
+	font-family: 'AppleSDGothicNeoB00';
+	src: url('AppleSDGothicNeoB/AppleSDGothicNeoB.ttf');
+}
+
+@font-face {
+	font-family: 'AppleSDGothicNeoSB00';
+	src: url('AppleSDGothicNeoSB/AppleSDGothicNeoSB.ttf');
+}
+
+@font-face {
+	font-family: 'jua';
+	src: url('BaminJua/BMJUA_ttf.ttf');
+}

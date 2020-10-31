@@ -102,7 +102,6 @@
           width: 100%;
         }
         h3 {
-          font-family: AppleSDGothicNeoM00;
           font-size: 17px;
           font-weight: normal;
           font-stretch: normal;
@@ -136,7 +135,6 @@
         }
 
         p {
-          font-family: AppleSDGothicNeoM00;
           font-size: 13px;
           font-weight: normal;
           font-stretch: normal;
@@ -188,7 +186,6 @@
             font-style: normal;
             line-height: 1.38;
             letter-spacing: 0px;
-            font-family: "AppleSDGothicNeoM00";
             padding: 4px;
           }
         }
@@ -219,7 +216,6 @@
             color: #ff7f1f;
             height: 52px;
             font-weight: 500;
-            font-family: "AppleSDGothicNeoM00";
             font-size: 17px;
             cursor: pointer;
             padding: 0;
@@ -291,6 +287,8 @@
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+
 .divider {
   position: absolute;
   width: 100%;
@@ -301,7 +299,6 @@
 }
 
 h3.notice-subtitle {
-  font-family: AppleSDGothicNeoM00;
   font-size: 16px;
   font-weight: normal;
   font-stretch: normal;

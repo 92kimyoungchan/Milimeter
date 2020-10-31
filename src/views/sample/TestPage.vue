@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AddPopup from "../../components/AddPopup";
+import AddPopup from "@/components/AddPopup";
 import { mapMutations, mapState } from "vuex";
 export default {
   name: "TestPage",
