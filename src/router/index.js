@@ -14,9 +14,19 @@ const routes = [
     component: () => import("@/views/sample/Function.vue"),
     meta: { unauthorized: true }
   },
-    {
+  {
     path: "/about",
     component: () => import("@/views/about/AboutMilimeter.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/join1",
+    component: () => import("@/views/join/Join01.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/join2",
+    component: () => import("@/views/join/Join02.vue"),
     meta: { unauthorized: true }
   },
   {

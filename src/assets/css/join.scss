@@ -1,0 +1,38 @@
+.join {
+  .container {
+    .title {
+      margin: 0 0 20px 0;
+      position: relative;
+      h2 {
+        color: rgb(41, 42, 43);
+        text-align: left;
+      }
+      span {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .article-wrapper {
+      .article {
+        label {
+          color: rgb(141, 143, 145);
+          text-align: left;
+          margin: 0 0 5px 0;
+        }
+        .input-wrap {
+          background: rgb(238, 241, 243);
+          height: 50px;
+          border-radius: 10px;
+          input {
+            height: inherit;
+          }
+        }
+      }
+    }
+    .button-wrap {
+      button {
+      }
+    }
+  }
+}

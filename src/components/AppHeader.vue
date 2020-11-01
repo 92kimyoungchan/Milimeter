@@ -3,10 +3,14 @@
     <div class="direction left" @click="prev()" v-if="leftButton === 'prev'">
       <img src="@/assets/images/back.svg" />
     </div>
-    <div class="direction left" @click="sideMenu()" v-if="leftButton === 'menu'">
+    <div
+      class="direction left"
+      @click="sideMenu()"
+      v-if="leftButton === 'menu'"
+    >
       <img src="@/assets/images/menu.svg" />
     </div>
-    <h3 id="headerText">{{ headerTitle }}</h3>
+    <h3 class="scaleBody">{{ headerTitle }}</h3>
     <div class="direction right" @click="home" v-if="rightButton === 'home'">
       <img src="@/assets/images/home.svg" />
     </div>
@@ -80,21 +84,14 @@ export default {
   padding: 0 24px;
 
   position: fixed;
-  width: 100%;
+  width: inherit;
   z-index: 100;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: #ffffff;
   justify-content: space-between;
 
   h3 {
-    font-family: "AppleSDGothicNeoM00";
-    font-size: 20px;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 54px;
-    letter-spacing: normal;
-    color: #444b56;
+    color: rgb(41, 42, 43);
     text-align: center;
     margin: 0;
     flex: 1 1 auto;
