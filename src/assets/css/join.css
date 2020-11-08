@@ -3,6 +3,11 @@
   position: relative;
 }
 
+.join .container .title .welcome-comment {
+  color: #8d8f91;
+  margin: 0 0 8px 0;
+}
+
 .join .container .title h2 {
   color: #292a2b;
   text-align: left;
@@ -13,6 +18,14 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.join .container .article-wrapper .article {
+  margin: 30px 0 0 0;
+}
+
+.join .container .article-wrapper .article:first-of-type {
+  margin: 0;
 }
 
 .join .container .article-wrapper .article label {
@@ -28,12 +41,54 @@
   border-radius: 10px;
 }
 
+.join .container .article-wrapper .article .input-wrap.center input {
+  text-align: center;
+}
+
 .join .container .article-wrapper .article .input-wrap input {
   height: inherit;
   width: 100%;
   padding: 0 8px;
   background: transparent;
   padding: 0 14px;
+}
+
+.join .container .article-wrapper .article .radio-btn-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.join .container .article-wrapper .article .radio-btn-wrap .item {
+  width: calc(50% - 12.5px);
+  height: 50px;
+  padding: 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px solid #242249;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 0 0 25px;
+}
+
+.join .container .article-wrapper .article .radio-btn-wrap .item:first-of-type {
+  margin: 0;
+}
+
+.join .container .article-wrapper .article .radio-btn-wrap .item .img-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.join .container .article-wrapper .article .radio-btn-wrap .item span.radio-name {
+  display: block;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
 }
 
 .join .button-wrap {

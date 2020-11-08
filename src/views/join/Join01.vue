@@ -39,7 +39,7 @@ export default {
         headerName: "회원가입",
         isOpaque: true,
         prevUrl: "/preRecord",
-        leftButton: ""
+        leftButton: "prev"
       },
        contextPaddingTop: 0,
       topWidgetHeight: null

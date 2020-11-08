@@ -1,7 +1,7 @@
 <template>
   <div class="app-header">
     <div class="direction left" @click="prev()" v-if="leftButton === 'prev'">
-      <img src="@/assets/images/back.svg" />
+      <img src="@/assets/images/back_icon.svg" />
     </div>
     <div
       class="direction left"
@@ -80,9 +80,9 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0;
   position: fixed;
-  width: 390px;
+  width: calc(100% - 48px);
   z-index: 100;
   //box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: none;
@@ -92,10 +92,11 @@ export default {
   left: 50%;
 
   h3 {
-    color: rgb(41, 42, 43);
+    color: #292a2b;
     text-align: center;
     margin: 0;
-    flex: 1 1 auto;
+    position: absolute;
+    width: 100%;
   }
   .direction {
     cursor: pointer;
