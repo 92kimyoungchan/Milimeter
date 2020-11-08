@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
-    <div class="container">
+  <div class="home app-wrap">
+    <div class="container own">
       <div class="welcome">
-        <h1 class="scaleH1">Hello</h1>
-        <p class="scaleSubtitle">혼밥 말고</p>
-        <p class="scaleSubtitle">함께 모여 식사해요!</p>
+        <h1 class="scale-h1">Hello</h1>
+        <p class="scale-subtitle">혼밥 말고</p>
+        <p class="scale-subtitle">함께 모여 식사해요!</p>
       </div>
       <div class="meal-wrap">
         <div class="meal">
@@ -24,15 +24,15 @@
             </div>
           </div>
         </div>
-        <h6 class="signiture scaleSubtitle">밀리미터</h6>
+        <h6 class="signiture scale-subtitle">밀리미터</h6>
       </div>
       <div class="login-function">
         <div class="button-wrap">
-          <button type="button" class="scaleTitle" @click="goAbout()">
+          <button type="button" class="scale-title" @click="goAbout()">
             Google 로그인
           </button>
         </div>
-        <a class="scaleBody">밀리미터에 대해 더 알고 싶나요?</a>
+        <a class="scale-body">밀리미터에 대해 더 알고 싶나요?</a>
       </div>
     </div>
   </div>
@@ -48,11 +48,16 @@ export default {
   },
   methods: {
     transedMain() {
+      console.log("before-screenHeight", screen.height);
       setTimeout(() => {
-        document.querySelector(".signiture").style.opacity = "0";
-        document.querySelector(".welcome").style.opacity = "1";
-        document.querySelector(".login-function").style.opacity = "1";
-      }, 900);
+        if (screen.height < 812) {
+          document.querySelector(".container").classList.add("small");
+        }
+        document.querySelector(".signiture").classList.add("loaded");
+        document.querySelector(".welcome").classList.add("loaded");
+        document.querySelector(".login-function").classList.add("loaded");
+        console.log("after-screenHeight", screen.height);
+      }, 2200);
     },
     goAbout() {
       this.$router.push("/about");
@@ -64,13 +69,24 @@ export default {
 <style lang="scss" scoped>
 .home {
   .container {
+    &.small {
+      .welcome {
+        top: 12.5%;
+      }
+      .login-function {
+        bottom: 10%;
+      }
+    }
     .welcome {
       width: 100%;
       position: Absolute;
       text-align: center;
       top: 110px;
       opacity: 0;
-      transition:.5s;
+      transition: 0.5s;
+      &.loaded {
+        opacity: 1;
+      }
       h1 {
         font-family: jua;
         font-size: 50px;
@@ -106,7 +122,6 @@ export default {
       .meal {
         display: flex;
         justify-content: space-between;
-        margin: 0 0 20px 0;
         .item {
           &.left {
             margin-left: -45px;
@@ -128,7 +143,11 @@ export default {
         line-height: 24px;
         letter-spacing: 4.4px;
         color: rgb(41, 42, 43);
-          transition:.5s;
+        transition: 0.5s;
+        margin: 20px 0 0 0;
+        &.loaded {
+          display: none;
+        }
       }
     }
     .login-function {
@@ -139,7 +158,10 @@ export default {
       left: 50%;
       transform: translateX(-50%);
       opacity: 0;
-        transition:.5s;
+      transition: 0.5s;
+      &.loaded {
+        opacity: 1;
+      }
       .button-wrap {
         margin: 0 0 15px 0;
         height: 50px;

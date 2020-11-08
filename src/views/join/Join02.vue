@@ -3,7 +3,7 @@
     <div class="container">
       <app-header :transDataSet="transData"></app-header>
       <div class="title">
-        <h2 class="scaleH1">닉네임을<br />등록해 주세요!</h2>
+        <h2 class="scale-h1">닉네임을<br />등록해 주세요!</h2>
         <span class="status">(1/2)</span>
       </div>
       <div class="article-wrapper">

@@ -1,5 +1,5 @@
 <template>
-  <div class="appHeader">
+  <div class="app-header">
     <div class="direction left" @click="prev()" v-if="leftButton === 'prev'">
       <img src="@/assets/images/back.svg" />
     </div>
@@ -10,7 +10,7 @@
     >
       <img src="@/assets/images/menu.svg" />
     </div>
-    <h3 class="scaleBody">{{ headerTitle }}</h3>
+    <h3 class="scale-body">{{ headerTitle }}</h3>
     <div class="direction right" @click="home" v-if="rightButton === 'home'">
       <img src="@/assets/images/home.svg" />
     </div>
@@ -20,7 +20,6 @@
   </div>
 </template>
 
-media( max-width:343px) { }
 <script>
 import { mapState } from "vuex";
 export default {
@@ -76,19 +75,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.appHeader {
+.app-header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-
   position: fixed;
-  width: inherit;
+  width: 390px;
   z-index: 100;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-  background-color: #ffffff;
-  justify-content: space-between;
+  //box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: none;
+  background-color: #fff;
+  height: 54px;
+  transform: translateX(-50%);
+  left: 50%;
 
   h3 {
     color: rgb(41, 42, 43);

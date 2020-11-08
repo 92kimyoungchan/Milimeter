@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <div class="container">
+  <div class="about app-wrap">
+    <div class="container own">
       <div class="swiper-wrap">
         <swiper
           :options="swiperOption"
@@ -12,11 +12,11 @@
               <img :src="swiper.img" />
             </div>
             <div class="content">
-              <h6 class="scaleTitle">{{ swiper.title }}</h6>
-              <p class="scaleBody" v-html="computedContentBody"></p>
+              <h6 class="scale-title">{{ swiper.title }}</h6>
+              <p class="scale-body" v-html="computedContentBody"></p>
             </div>
             <div class="button-wrap">
-              <button class="scaleSubtitle" type="button" @click="nextSlide()">
+              <button class="scale-subtitle" type="button" @click="nextSlide()">
                 다음으로
               </button>
             </div>
@@ -37,7 +37,6 @@ export default {
   },
   data() {
     return {
-      currentIndex: "0",
       swiperOption: {
         autoHeight: true,
         pagination: {
@@ -57,7 +56,8 @@ export default {
           title: "mealimeter[밀리미터]는",
           body: "함께 식사할 사람들을 매칭시켜주는\n" + "애플리케이션입니다."
         }
-      ]
+      ],
+      currentIndex: 0
     };
   },
   mounted() {},
@@ -68,15 +68,18 @@ export default {
   },
   methods: {
     nextSlide() {
-      if (this.currentIndex !== 1) {
+      if (this.$refs.mySwiperRef.$swiper.activeIndex !== 1) {
         this.$refs.mySwiperRef.$swiper.slideNext();
       } else {
-        alert("으아");
+        alert("슬라이드 끝");
       }
     },
     changeSwiperIndex() {
       this.currentIndex = this.$refs.mySwiperRef.$swiper.activeIndex;
-      return this.$refs.mySwiperRef.$swiper.activeIndex;
+      console.log(
+        "현재의 인덱스는",
+        this.$refs.mySwiperRef.$swiper.activeIndex
+      );
     }
   }
 };

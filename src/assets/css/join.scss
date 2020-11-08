@@ -1,11 +1,15 @@
 .join {
   .container {
+    .app-header {
+      
+    }
     .title {
       margin: 0 0 20px 0;
       position: relative;
       h2 {
         color: rgb(41, 42, 43);
         text-align: left;
+        font-weight:300;
       }
       span {
         position: absolute;
@@ -19,6 +23,7 @@
           color: rgb(141, 143, 145);
           text-align: left;
           margin: 0 0 5px 0;
+          display: block;
         }
         .input-wrap {
           background: rgb(238, 241, 243);
@@ -26,13 +31,34 @@
           border-radius: 10px;
           input {
             height: inherit;
+            width: 100%;
+            padding: 0 8px;
+            background: transparent;
+            padding:0 14px;
           }
         }
       }
     }
-    .button-wrap {
+  }
+  .button-wrap {
+      position:fixed;
+      bottom:30px;
+      width: 316px;
+      left:50%;
+      height:50px;
+      border-radius: 10px;
+      opacity: 50%;
+      background: rgb(36, 34, 73);
+      display:flex;
+      transform:translateX(-50%);
+      align-items: center;
+      justify-content: center;
+      z-index:99;
       button {
+        color:#fff;
+        background:0;
+        padding:0;
+        border:0;
       }
     }
-  }
 }

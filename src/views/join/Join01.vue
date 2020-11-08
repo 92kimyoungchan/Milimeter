@@ -1,23 +1,30 @@
 <template>
-  <div class="join">
+  <div class="app-wrap join">
+    <app-header
+      :transDataSet="transData"
+      :style="computedTopWidgetHeight"
+    ></app-header>
+    <div class="bgimg rotate" :style="computedStyleBg"></div>
     <div class="container">
-      <app-header :transDataSet="transData"></app-header>
       <div class="title">
-        <h2 class="scaleH1">닉네임을<br />등록해 주세요!</h2>
-        <span class="status">(1/2)</span>
+        <h2 class="scale-h1">닉네임을<br />등록해 주세요!</h2>
+        <span class="status scale-body">(1/2)</span>
       </div>
       <div class="article-wrapper">
         <div class="article">
-          <label>닉네임</label>
+          <label class="scale-body">닉네임</label>
           <div class="input-wrap">
             <input type="text" />
           </div>
         </div>
       </div>
       <div class="button-wrap">
-        <button type="button" @click="goNext()">다음</button>
+        <button type="button" class="scale-subtitle" @click="goNext()">
+          다음
+        </button>
       </div>
     </div>
+    <div class="bgimg"></div>
   </div>
 </template>
 <script>
@@ -33,12 +40,41 @@ export default {
         isOpaque: true,
         prevUrl: "/preRecord",
         leftButton: ""
-      }
+      },
+       contextPaddingTop: 0,
+      topWidgetHeight: null
     };
   },
-  mounted() {},
-  computed: {},
+  mounted() {
+    this.scrollBgSet();
+  },
+  computed: {
+    computedStyleObject() {
+      return {
+        paddingTop: this.contextPaddingTop + "px"
+      };
+    },
+    computedStyleBg() {
+      return {
+        top: this.topWidgetHeight + "px"
+      };
+    },
+    computedTopWidgetHeight() {
+      return {
+        height: this.topWidgetHeight + "px"
+      };
+    }
+  },
   methods: {
+    scrollBgSet() {
+      const topWidget = document.querySelector(".app-header");
+      const topBg = document.querySelector(".rotate");
+      const topValue =
+        topWidget.getBoundingClientRect().height +
+        topBg.getBoundingClientRect().height;
+      this.contextPaddingTop = topValue;
+      this.topWidgetHeight = topWidget.getBoundingClientRect().height;
+    },
     goNext() {
       this.$router.push("/join02");
     }
@@ -47,5 +83,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/css/join.css";
+@import "@/assets/css/join.scss";
 </style>
