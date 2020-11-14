@@ -144,9 +144,9 @@ a {
   width: inherit;
   position: relative;
   margin: 0 auto;
-  padding:105px 24px 0 24px;
+  padding: 105px 24px 0 24px;
   &.own {
-    padding:0;
+    padding: 0;
   }
 }
 .app-wrap {
@@ -179,6 +179,11 @@ a {
 }
 .scale-body {
   font-family: "AppleSDGothicNeoR00";
+  line-height: 22px;
+  font-size: 16px;
+}
+.scale-body-2 {
+  font-family: "AppleSDGothicNeoM00";
   line-height: 22px;
   font-size: 16px;
 }
@@ -220,4 +225,3 @@ a {
     max-height: 812px;
   }
 }
-

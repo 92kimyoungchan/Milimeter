@@ -1,71 +1,66 @@
 <template>
-  <div id="main-footer">
-    <div class="mf-navigation">
-      <router-link to="/">
-        <div class="mf-nav-icon-wrap">
-          <div class="mf-nav-icon" id="ubt-cn1">
-            <img src="@/assets/images/ubt-cn1_off.svg" />
-          </div>
-          <span>홈</span>
+  <div class="app-footer">
+    <div class="menu">
+      <div class="item">
+        <div class="img-wrap">
+          <img src="@/assets/images/home_disabled_icon.svg" />
         </div>
-      </router-link>
-      <router-link to="/">
-        <div class="mf-nav-icon-wrap">
-          <div class="mf-nav-icon" id="ubt-cn2">
-            <img src="@/assets/images/ubt-cn2_off.svg" />
-          </div>
-          <span>화상정보</span>
+        <p class="scale-caption">홈</p>
+      </div>
+      <div class="item">
+        <div class="img-wrap">
+          <img src="@/assets/images/list_disabled_icon.svg" />
         </div>
-      </router-link>
-      <router-link to="/">
-        <div class="mf-nav-icon-wrap">
-          <div class="mf-nav-icon" id="ubt-cn3">
-            <img src="@/assets/images/ubt-cn3_off.svg" />
-          </div>
-          <span>온라인상담</span>
+        <p class="scale-caption">신청목록</p>
+      </div>
+      <div class="item">
+        <div class="img-wrap">
+          <img src="@/assets/images/plusroom_disabled_icon.svg" />
         </div>
-      </router-link>
-      <router-link to="/">
-        <div class="mf-nav-icon-wrap">
-          <div class="mf-nav-icon" id="ubt-cn4">
-            <img src="@/assets/images/ubt-cn4_off.svg" />
-          </div>
-          <span>내 상처 관리</span>
+        <p class="scale-caption">방만들기</p>
+      </div>
+      <div class="item">
+        <div class="img-wrap">
+          <img src="@/assets/images/mypage_active_icon.svg" />
         </div>
-      </router-link>
-      <router-link to="/">
-        <div class="mf-nav-icon-wrap">
-          <div class="mf-nav-icon" id="ubt-cn5">
-            <img src="@/assets/images/ubt-cn5_off.svg" />
-          </div>
-          <span>정보공유</span>
-        </div>
-      </router-link>
+        <p class="scale-caption">마이페이지</p>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: {
-    transOrder: {
-      iconOrder: {
-        type: Number
-      }
-    }
-  },
   data() {
-    return {
-      effectOrder: this.transOrder.iconOrder
-    };
+    return {};
   },
-  methods: {
-    test() {
-      this.$router.push("/test");
-    },
-    example() {
-      this.$router.push("/manageBurn/manageExample");
-    }
-  }
+  methods: {},
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  height: 72px;
+  width: 100%;
+  border-top: 1px solid #d7dadc;
+  z-index: 10;
+  background: #FFF;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.33);
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    height: inherit;
+    align-items: flex-end;
+    text-align: center;
+    padding: 0 35px 5px 35px;
+    .item {
+      .img-wrap {
+        img {
+        }
+      }
+      p {
+      }
+    }
+  }
+}
+</style>

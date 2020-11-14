@@ -199,6 +199,12 @@ a {
   font-size: 16px;
 }
 
+.scale-body-2 {
+  font-family: "AppleSDGothicNeoM00";
+  line-height: 22px;
+  font-size: 16px;
+}
+
 .scale-caption {
   font-family: "AppleSDGothicNeoR00";
   line-height: 20px;

@@ -15,7 +15,7 @@ export default {
   name: "Connection",
   data() {
     return {
-      app: ""
+      app: "",
     };
   },
   created() {
@@ -24,7 +24,7 @@ export default {
         apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
         appId: process.env.VUE_APP_FIREBASE_APP_ID,
         projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
-        authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN
+        authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
       };
       this.app = Firebase.initializeApp(config);
     }
@@ -34,16 +34,17 @@ export default {
       const provider = new Firebase.auth.GoogleAuthProvider();
       Firebase.auth()
         .signInWithPopup(provider)
-        .then(async user => {
+        .then(async (user) => {
           let idToken;
           await Firebase.auth()
             .currentUser.getIdToken(true)
-            .then(res => (idToken = res));
+            .then((res) => (idToken = res));
+
           console.log(idToken);
         });
-    }
+    },
   },
   computed: {},
-  components: {}
+  components: {},
 };
 </script>

@@ -3,15 +3,17 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import auth from "./modules/auth";
 import basic from "./modules/basic";
+import maintaince from "./modules/maintainUser";
 
 const modules = {
   auth,
-  basic
+  basic,
+  maintaince
 };
 
 const plugins = [
   createPersistedState({
-    paths: ["consultation"]
+    paths: ["maintaince"]
   })
 ];
 Vue.use(Vuex);

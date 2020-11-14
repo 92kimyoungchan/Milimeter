@@ -32,21 +32,30 @@
             Google 로그인
           </button>
         </div>
-        <a class="scale-body">밀리미터에 대해 더 알고 싶나요?</a>
+         <router-link to="/about" class="scale-body">
+         밀리미터에 대해 더 알고 싶나요?
+         </router-link>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { setCookie } from "@/utils/cookie";
+import { mapActions, mapMutations, mapState, mapGetters } from "vuex";
+import Firebase from "firebase";
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      appData: "",
+      appLoginPassed: false,
+    };
   },
   mounted() {
     this.transedMain();
   },
   methods: {
+    ...mapActions("maintaince", ["LOGIN"]),
     transedMain() {
       console.log("before-screenHeight", screen.height);
       setTimeout(() => {
@@ -59,10 +68,57 @@ export default {
         console.log("after-screenHeight", screen.height);
       }, 2200);
     },
-    goAbout() {
-      this.$router.push("/about");
-    }
-  }
+    appAuthCheck() {
+      if (!Firebase.apps.length) {
+        const config = {
+          apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+          appId: process.env.VUE_APP_FIREBASE_APP_ID,
+          projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+          authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+        };
+        this.appData = Firebase.initializeApp(config);
+      }
+    },
+    async goAbout() {
+      await this.appAuthCheck();
+      await this.carry();
+      await this.doLoginOwnApp();
+    },
+    async doLoginOwnApp() {
+      try {
+        await this.LOGIN().then(() => {
+          this.appLoginPassed = this.GET_JOIN_DONE;
+          if (appLoginPassed) {
+            alert("로그인 끝");
+          } else {
+            this.$router.push("/about");
+          }
+        });
+      } catch (error) {
+        console.log("앱 자체 로그인");
+        console.log("오류메시지 찍기", error);
+      }
+    },
+    carry() {
+      const provider = new Firebase.auth.GoogleAuthProvider();
+      Firebase.auth()
+        .signInWithPopup(provider)
+        .then(async (user) => {
+          let getToken;
+          await Firebase.auth()
+            .currentUser.getIdToken(true)
+            .then((response) => {
+              getToken = response;
+              console.log("구글로그인 후 추출된 토근", getToken);
+              setCookie("token", getToken, { secure: true, expires: 30 });
+            });
+          // action
+        });
+    },
+  },
+  computed: {
+    ...mapGetters("maintaince", ["GET_JOIN_DONE"]),
+  },
 };
 </script>
 

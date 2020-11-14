@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="createroom_icon" width="60" height="60" viewBox="0 0 60 60">
+    <defs>
+        <style>
+            .cls-5{fill:none;stroke:#292a2b;stroke-linecap:round;stroke-width:1.5px}
+        </style>
+    </defs>
+    <circle id="타원_1044" cx="30" cy="30" r="30" fill="#5fbb92" opacity="0.1"/>
+    <g id="createroom_icon-2" transform="translate(19.186 19.185)">
+        <path id="사각형_5259" fill="rgba(255,255,255,0)" d="M0 0H23V23H0z"/>
+        <g id="그룹_5779" transform="translate(1 1)">
+            <path id="패스_20125" fill="#5fbb92" d="M5 0h9a5 5 0 0 1 5 5v9a5 5 0 0 1-5 5H5a5 5 0 0 1-5-5V5a5 5 0 0 1 5-5z" transform="translate(3 3)"/>
+            <g id="패스_20121" fill="#fff" stroke="none">
+                <path d="M14 18.25H5C2.657 18.25.75 16.343.75 14V5C.75 2.657 2.657.75 5 .75h9c2.343 0 4.25 1.907 4.25 4.25v9c0 2.343-1.907 4.25-4.25 4.25z"/>
+                <path fill="#292a2b" d="M5 1.5C3.07 1.5 1.5 3.07 1.5 5v9c0 1.93 1.57 3.5 3.5 3.5h9c1.93 0 3.5-1.57 3.5-3.5V5c0-1.93-1.57-3.5-3.5-3.5H5M5 0h9c2.761 0 5 2.239 5 5v9c0 2.761-2.239 5-5 5H5c-2.761 0-5-2.239-5-5V5c0-2.761 2.239-5 5-5z"/>
+            </g>
+            <path id="선_976" d="M0 0L10 0" class="cls-5" transform="translate(4.5 9.5)"/>
+            <path id="선_977" d="M0 0L10 0" class="cls-5" transform="rotate(90 2.5 7)"/>
+        </g>
+    </g>
+</svg>

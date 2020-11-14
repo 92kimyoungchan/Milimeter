@@ -20,6 +20,16 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
+    path: "/join",
+    component: () => import("@/views/join/Join.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/joinDone",
+    component: () => import("@/views/join/JoinDone.vue"),
+    meta: { unauthorized: true }
+  },
+  {
     path: "/join1",
     component: () => import("@/views/join/Join01.vue"),
     meta: { unauthorized: true }
@@ -27,6 +37,12 @@ const routes = [
   {
     path: "/join2",
     component: () => import("@/views/join/Join02.vue"),
+    meta: { unauthorized: true }
+  },
+  {
+    path: "/myPage",
+    name: "myPage",
+    component: () => import("../views/user/MyPage.vue"),
     meta: { unauthorized: true }
   },
   {

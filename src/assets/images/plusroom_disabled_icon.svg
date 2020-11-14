@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="plusroom_disabled_icon" width="23" height="23" viewBox="0 0 23 23">
+    <defs>
+        <style>
+            .cls-3{fill:none;stroke:#8d8f91;stroke-width:1.5px;stroke-linecap:round}
+        </style>
+    </defs>
+    <path id="사각형_5259" fill="#fff" d="M0 0H23V23H0z"/>
+    <g id="그룹_5777" transform="translate(2 2)">
+        <g id="사각형_5262" fill="none" stroke="#8d8f91" stroke-width="1.5px">
+            <rect width="19" height="19" stroke="none" rx="5"/>
+            <rect width="17.5" height="17.5" x=".75" y=".75" rx="4.25"/>
+        </g>
+        <path id="선_976" d="M0 0L10 0" class="cls-3" transform="translate(4.5 9.5)"/>
+        <path id="선_977" d="M0 0L10 0" class="cls-3" transform="rotate(90 2.5 7)"/>
+    </g>
+</svg>

@@ -26,21 +26,21 @@ export default {
   props: {
     transDataSet: {
       headerName: {
-        type: String
+        type: String,
       },
       prevUrl: {
-        type: String
+        type: String,
       },
       keyName: {
-        type: String
+        type: String,
       },
       leftButton: {
-        type: String
+        type: String,
       },
       rightButton: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   },
   data() {
     return {
@@ -48,29 +48,33 @@ export default {
       prevBtnUrl: this.transDataSet.prevUrl,
       keyName: this.transDataSet.keyName,
       leftButton: this.transDataSet.leftButton,
-      rightButton: this.transDataSet.rightButton
+      rightButton: this.transDataSet.rightButton,
     };
   },
   computed: {
-    ...mapState(["prevUrl"])
+    ...mapState(["prevUrl"]),
   },
   methods: {
     home() {
       this.$router.push("/");
     },
     prev() {
-      this.$router.push("" + this.prevBtnUrl + "");
-      console.log("this.keyname = ", this.keyName);
-      if (this.keyName !== undefined) {
-        sessionStorage.removeItem("" + this.keyName + "");
+      if (this.transDataSet.prevUrl === "another") {
+        this.$emit("prevSection");
+      } else {
+        this.$router.push("" + this.prevBtnUrl + "");
+        console.log("this.keyname = ", this.keyName);
+        if (this.keyName !== undefined) {
+          sessionStorage.removeItem("" + this.keyName + "");
+        }
+        console.log("URL", this.prevBtnUrl);
       }
-      console.log("URL", this.prevBtnUrl);
     },
     prevGo() {
       return window.history?.length > 2;
-    }
+    },
   },
-  components: {}
+  components: {},
 };
 </script>
 
@@ -102,6 +106,7 @@ export default {
     cursor: pointer;
     padding: 0;
     top: 0;
+    z-index: 2;
     .icon-wrap {
       display: flex;
       align-items: center;

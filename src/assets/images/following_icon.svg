@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="following_icon" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-4{stroke:#292a2b;fill:none}.cls-5{stroke:none}
+        </style>
+    </defs>
+    <g id="Drink_Icon" transform="translate(-199.528 -4106.572)">
+        <g id="타원_117" fill="#ffb9f8" stroke="#292a2b" transform="translate(200 4107)">
+            <circle cx="5.515" cy="5.515" r="5.515" class="cls-5"/>
+            <circle cx="5.515" cy="5.515" r="5.015" fill="none"/>
+        </g>
+        <g id="패스_113" fill="#fff">
+            <path d="M4.723 9.915H4.59C2.71 9.883 1.214 9.231.144 7.976-2.301 5.113-1.624.14-1.594-.07l.061-.429H10.873l.055.438c.027.216.632 5.326-1.871 8.162-1.064 1.205-2.522 1.815-4.334 1.815z" class="cls-5" transform="translate(207.115 4113.016)"/>
+            <path fill="#292a2b" d="M-1.1 0s-1.325 9.3 5.698 9.414l.125.001C11.608 9.415 10.432 0 10.432 0H-1.1m-.868-1h13.282l.109.876c.028.225.659 5.552-1.993 8.555-1.162 1.317-2.746 1.984-4.708 1.984h-.141C2.552 10.38.932 9.67-.237 8.301-2.826 5.267-2.12.078-2.089-.141L-1.967-1z" transform="translate(207.115 4113.016)"/>
+        </g>
+        <path id="패스_114" d="M229.072 4114.634s.038-2.472 1.074-3.015 3.936 0 3.936 0" class="cls-4" transform="translate(-14.497 -2.183)"/>
+        <path id="선_41" d="M0 0L0 5.749" class="cls-4" transform="translate(211.781 4123.293)"/>
+        <path id="패스_116" d="M0-.893l4.031-1.351L8.523-.893" class="cls-4" transform="translate(207.771 4130.704)"/>
+        <path id="패스_120" d="M219.468 4128.283c1.829 0 3.666-2.092 3.976-3.838" class="cls-4" transform="translate(-7.747 -7.544)"/>
+    </g>
+</svg>

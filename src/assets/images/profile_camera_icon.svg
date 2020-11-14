@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="profile_camera_icon" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-8{fill:none}.cls-7{stroke:none}
+        </style>
+    </defs>
+    <circle id="타원_1053" cx="12" cy="12" r="12" fill="#fff"/>
+    <g id="camera-icon" transform="translate(4.732 5.442)">
+        <circle id="ellipse" cx="2.5" cy="2.5" r="2.5" fill="rgba(42,0,0,0)" stroke="#292a2b" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" transform="translate(5.268 4.558)"/>
+        <circle id="ellipse-2" cx=".5" cy=".5" r=".5" fill="none" stroke="#292a2b" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" transform="translate(12.268 4.558)"/>
+        <path id="path" fill="#8d8f91" stroke="#8d8f91" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M14.095 2.21h-2.822l-.342-1.11a.821.821 0 0 0-.77-.6H5.374a.821.821 0 0 0-.77.6l-.427 1.11H1.441a.949.949 0 0 0-.941.941v7.524a.949.949 0 0 0 .941.941h12.654a.949.949 0 0 0 .941-.941V3.151a.949.949 0 0 0-.941-.941z"/>
+        <g id="타원_1054" fill="#fff" stroke="#fff" transform="translate(4.967 4.058)">
+            <circle cx="3" cy="3" r="3" class="cls-7"/>
+            <circle cx="3" cy="3" r="2.5" class="cls-8"/>
+        </g>
+        <g id="타원_1055" fill="none" stroke="#fff" transform="translate(11.768 3.558)">
+            <circle cx="1" cy="1" r="1" class="cls-7"/>
+            <circle cx="1" cy="1" r=".5" class="cls-8"/>
+        </g>
+    </g>
+</svg>
