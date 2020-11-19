@@ -2,9 +2,14 @@ import { user } from "@/api";
 
 const state = {
   user: {
-    name: "",
     birth: "",
-    gender: ""
+    devicleKey: "",
+    gender: "M",
+    nickName: "",
+    pushAgree: false,
+    email: "",
+    uid: "",
+    areas: []
   }
 };
 
@@ -29,6 +34,9 @@ const actions = {
     return user.joinBasicUser(userData);
   }
    */
+  JOIN_USER({ }, userData) {
+    return user.joinUser(userData);
+  }
 };
 
 export default {

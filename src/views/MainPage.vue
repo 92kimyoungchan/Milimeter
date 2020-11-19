@@ -32,9 +32,9 @@
             Google 로그인
           </button>
         </div>
-         <router-link to="/about" class="scale-body">
-         밀리미터에 대해 더 알고 싶나요?
-         </router-link>
+        <router-link to="/about" class="scale-body">
+          밀리미터에 대해 더 알고 싶나요?
+        </router-link>
       </div>
     </div>
   </div>
@@ -82,13 +82,12 @@ export default {
     async goAbout() {
       await this.appAuthCheck();
       await this.carry();
-      await this.doLoginOwnApp();
     },
     async doLoginOwnApp() {
       try {
         await this.LOGIN().then(() => {
           this.appLoginPassed = this.GET_JOIN_DONE;
-          if (appLoginPassed) {
+          if (this.appLoginPassed) {
             alert("로그인 끝");
           } else {
             this.$router.push("/about");
@@ -111,6 +110,7 @@ export default {
               getToken = response;
               console.log("구글로그인 후 추출된 토근", getToken);
               setCookie("token", getToken, { secure: true, expires: 30 });
+              this.doLoginOwnApp();
             });
           // action
         });

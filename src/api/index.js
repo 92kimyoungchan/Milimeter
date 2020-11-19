@@ -146,7 +146,11 @@ const request = {
 export const user = {
   joinUser(userData) {
     return request
-      .post("api/v1/user/join", userData)
+      .post("api/v1/user/join", userData, {
+        headers: {
+          Authorization: "Bearer " + getCookie("token")
+        }
+      })
       .then(({ data }) => data);
   }
 };
@@ -154,7 +158,7 @@ export const user = {
 export const maintaince = {
   login() {
     return request
-      .post("api/v1/user/login", {
+      .post("api/v1/user/login", null, {
         headers: {
           Authorization: "Bearer " + getCookie("token")
         }

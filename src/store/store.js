@@ -3,12 +3,14 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import auth from "./modules/auth";
 import basic from "./modules/basic";
+import user from "./modules/user";
 import maintaince from "./modules/maintainUser";
 
 const modules = {
   auth,
   basic,
-  maintaince
+  maintaince,
+  user
 };
 
 const plugins = [

@@ -96,22 +96,33 @@
       </div>
     </div>
     <div class="bgimg"></div>
+    <add-popup v-if="checkPopup" :popupSet="popupSet" />
   </div>
 </template>
 <script>
 import AppHeader from "@/components/AppHeader.vue";
+import AddPopup from "@/components/AddPopup";
+import { mapActions, mapState, mapMutations } from "vuex";
+import Firebase from "firebase";
+import { setCookie } from "@/utils/cookie";
 export default {
   components: {
     AppHeader,
+    AddPopup,
   },
   data() {
     return {
+      popupSet: {
+        confirmBtnText: "확인",
+        nextLink: "/",
+      },
       transData: {
         headerName: "회원가입",
         isOpaque: true,
         prevUrl: "/about",
         leftButton: "prev",
       },
+      appData: "",
       contextPaddingTop: 0,
       topWidgetHeight: null,
       step2: false,
@@ -142,6 +153,7 @@ export default {
     this.scrollBgSet();
   },
   computed: {
+    ...mapState("basic", ["checkPopup"]),
     computedStyleObject() {
       return {
         paddingTop: this.contextPaddingTop + "px",
@@ -170,6 +182,8 @@ export default {
     },
   },
   methods: {
+    ...mapMutations("basic", ["SET_POPUP"]),
+    ...mapActions("user", ["JOIN_USER"]),
     scrollBgSet() {
       const topWidget = document.querySelector(".app-header");
       const topBg = document.querySelector(".rotate");
@@ -188,7 +202,28 @@ export default {
         alert("닉네임을 입력해주세요.");
       }
     },
-    done() {
+    appAuthCheck() {
+      if (!Firebase.apps.length) {
+        const config = {
+          apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+          appId: process.env.VUE_APP_FIREBASE_APP_ID,
+          projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+          authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+        };
+        this.appData = Firebase.initializeApp(config);
+      }
+    },
+    preApi() {
+      this.appAuthCheck();
+      Firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          user.getIdToken().then(function (idToken) {
+            setCookie("token", idToken, { secure: true, expires: 30 });
+          });
+        }
+      });
+    },
+    async done() {
       if (!this.form.name.flag) {
         this.form.name.hasError = true;
         this.step2 = false;
@@ -205,8 +240,54 @@ export default {
         alert("생년월일을 입력해주세요.");
         return false;
       }
-
-      alert("성공");
+      const userData = {
+        birth: this.form.birth.value,
+        deviceKey: "naddana9209",
+        gender: this.form.gender.value,
+        nickName: this.form.name.value,
+        pushAgree: true,
+      };
+      await this.preApi();
+      await this.JOIN_USER(userData).then(() => {
+        sessionStorage.setItem("joinUserId", userData.userId);
+        const item1 = {
+          title: "회원가입 완료",
+          content: "회원가입을 완료하였습니다.",
+        };
+        transPopItem.push(item1);
+        this.popupSet.count = "noticePop";
+        this.popupSet.inPopItem = transPopItem;
+        this.SET_POPUP(true);
+        this.popupSet.modalImg = "cha.svg";
+        this.popupSet.doQuit = true;
+        this.popupSet.title = undefined;
+        this.popupSet.content = undefined;
+        this.popupSet.nextLink = "/joinDone";
+      });
+      /* 
+Firebase.auth()
+        .currentUser.getIdToken(true)
+        .then((response) => {
+          getToken = response;
+          setCookie("token", getToken, { secure: true, expires: 30 });
+          this.JOIN_USER(userData).then(() => {
+            sessionStorage.setItem("joinUserId", userData.userId);
+            const item1 = {
+              title: "회원가입 완료",
+              content: "회원가입을 완료하였습니다.",
+            };
+            transPopItem.push(item1);
+            this.popupSet.count = "noticePop";
+            this.popupSet.inPopItem = transPopItem;
+            this.SET_POPUP(true);
+            this.popupSet.modalImg = "cha.svg";
+            this.popupSet.doQuit = true;
+            this.popupSet.title = undefined;
+            this.popupSet.content = undefined;
+            this.popupSet.nextLink = "/joinDone";
+          });
+        });
+        */
     },
     test() {
       this.step2 = false;

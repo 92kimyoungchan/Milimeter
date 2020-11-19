@@ -12,6 +12,7 @@ const state = {
 const mutations = {
   SET_LOGIN_RESPONSE(state, loginResponse) {
     state.maintaince.nickname = loginResponse.nickname
+    state.maintaince.joinDone = loginResponse.joinDone
   }
 };
 
@@ -24,13 +25,14 @@ const getters = {
 const actions = {
   LOGIN({ commit }, userData) {
     return maintaince.login(userData).then(data => {
+      console.log("로그인 후 데이터", data);
       let transedData
       if (data.status !== 203) {
         transedData = {
-          nickname: data.response.nickname,
+          nickname: data.nickname,
           joinDone: true
         };
-        setCookie("nickname", data.response.nickname, { secure: true, expires: 30 });
+        setCookie("nickname", data.nickname, { secure: true, expires: 30 });
       } else {
         transedData = {
           nickname: null,
