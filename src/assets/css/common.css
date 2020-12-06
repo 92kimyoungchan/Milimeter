@@ -351,6 +351,58 @@ h3.notice-subtitle {
   padding-right: 0;
 }
 
+.select-wrap .v-select {
+  height: 100%;
+}
+
+.select-wrap .v-select .vs__dropdown-toggle {
+  padding: 0;
+}
+
+.select-wrap .v-select.vs--open .vs__selected {
+  height: 100%;
+}
+
+.select-wrap .v-select .vs__dropdown-toggle {
+  height: inherit;
+  border: 1px solid #828282;
+  border-radius: 0;
+}
+
+.select-wrap .v-select .vs__dropdown-menu {
+  text-align: center;
+}
+
+.select-wrap .v-select .vs__search {
+  display: none;
+}
+
+.select-wrap .v-select .vs__selected {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  padding: 0 13px 0 0px;
+}
+
+.select-wrap .v-select .vs__actions {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  padding: 0;
+}
+
+.select-wrap .v-select .vs__actions .vs__clear {
+  display: none;
+}
+
+.select-wrap .v-select .vs__actions .vs__open-indicator {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
 /** 셀렉트 박스 */
 .style-chooser .vs__search::-webkit-input-placeholder,
 .style-chooser .vs__dropdown-toggle,
@@ -392,5 +444,48 @@ h3.notice-subtitle {
 .style-chooser .vs__clear,
 .style-chooser .vs__open-indicator {
   fill: #394066;
+}
+
+/* ===================== 탭 옵션정리 =====================  */
+ul.tabs__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-shadow: 0px -4px 6px 0 rgba(0, 0, 0, 0.16);
+          box-shadow: 0px -4px 6px 0 rgba(0, 0, 0, 0.16);
+}
+
+ul.tabs__header .progress {
+  position: absolute;
+  top: 0;
+  background: #fe6867;
+  height: 4px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+ul.tabs__header li {
+  width: 50%;
+  padding: 0;
+  font-family: Godo;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-align: center;
+  color: #a4a4a4;
+}
+
+ul.tabs__header li.tab__selected {
+  color: #fe6867;
+}
+
+.tab-wrapper {
+  padding: 0;
 }
 /*# sourceMappingURL=common.css.map */

@@ -68,10 +68,10 @@ export default {
   },
   methods: {
     nextSlide() {
-      if (this.$refs.mySwiperRef.$swiper.activeIndex !== 1) {
-        this.$refs.mySwiperRef.$swiper.slideNext();
+      if (this.$refs.mySwiperRef.$swiper.activeIndex === 1) {
+        alert("슬라이드 끝")
       } else {
-        alert("슬라이드 끝");
+        this.$refs.mySwiperRef.$swiper.slideNext();
       }
     },
     changeSwiperIndex() {
