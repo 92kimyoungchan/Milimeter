@@ -146,6 +146,9 @@ export default {
     .r-navigation {
       display: flex;
       padding: 0;
+      justify-content: space-between;
+      width: calc(100% - 70px);
+      margin: 0 auto 20px auto;
       .select-wrap {
       }
       .function {
@@ -157,6 +160,10 @@ export default {
           margin: 0 0 0 8px;
         }
       }
+    }
+    .container {
+      padding: 0 35px;
+      
     }
   }
 }

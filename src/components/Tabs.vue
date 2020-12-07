@@ -48,4 +48,42 @@ export default {
   components: {}
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.app-wrap {
+  &.room {
+.container {
+   ul.tabs__header {
+          position: absolute;
+          width: 200px;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: none;
+          padding: 0;
+          background: #5fbb92;
+          height: 30px;
+          align-items: center;
+          overflow: hidden;
+           border-radius: 6px;
+          li {
+            font-family: "AppleSDGothicNeoSB00";
+            font-size:14px;
+            line-height:28px;
+            text-align:center;
+            color:#fff;
+            border: 1px solid #5fbb92;
+            border-radius: 6px;
+              
+            &.tab__selected {
+              background:#fff;
+              color: rgb(95,187,146);
+              border: 1px solid #5fbb92;
+            }
+          }
+      }
+      .tab-wrapper {
+        padding:30px 0 0 0;
+      }
+      }
+}
+}
+</style>
