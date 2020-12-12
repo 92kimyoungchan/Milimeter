@@ -15,6 +15,11 @@ const routes = [
     meta: { unauthorized: true }
   },
   {
+    path: "/createRoom",
+    component: () => import("@/views/room/write.vue"),
+    meta: { unauthorized: true }
+  },
+  {
     path: "/Sample",
     component: () => import("@/views/sample/Function.vue"),
     meta: { unauthorized: true }

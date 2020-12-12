@@ -1,0 +1,33 @@
+<svg id="home_active_icon" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #292a2b;
+        stroke-width: 0.2px;
+      }
+
+      .cls-2, .cls-4 {
+        stroke: #292a2b;
+      }
+
+      .cls-3 {
+        fill: #5fbb92;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <rect id="사각형_5255" data-name="사각형 5255" class="cls-1" width="23" height="23"/>
+  <g id="Home" transform="translate(0.912 0.934)">
+    <path id="Home-2" data-name="Home" class="cls-2" d="M94.4,85.924,84.552,77.29a.724.724,0,0,0-.955,0l-9.851,8.634a.724.724,0,0,0,.955,1.089l.763-.669V97.118a.724.724,0,0,0,.724.724H91.961a.724.724,0,0,0,.724-.724V86.345l.763.669a.724.724,0,0,0,.955-1.09Zm-12,10.47V90.427h3.345v5.967H82.4Zm8.835-10.049V96.394H87.2V89.7a.724.724,0,0,0-.724-.724H81.678a.724.724,0,0,0-.724.724v6.691H76.913V86.345s-1.449,0-1.449,0L84.075,78.8l8.611,7.547S91.237,86.343,91.237,86.345Z" transform="translate(-73.499 -77.11)"/>
+    <path id="패스_20117" data-name="패스 20117" class="cls-3" d="M39.5,738.681l-9.244,8.094h18.44Z" transform="translate(-28.912 -736.934)"/>
+    <path id="패스_20122" data-name="패스 20122" class="cls-4" d="M.73,9.4H20.588" transform="translate(0 0.024)"/>
+  </g>
+</svg>

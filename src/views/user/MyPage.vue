@@ -91,7 +91,7 @@
         <p class="scale-body">앱 설정</p>
       </div>
     </div>
-    <app-footer></app-footer>
+    <app-footer :footerSet="footerSet"></app-footer>
   </div>
 </template>
 <script>
@@ -101,7 +101,11 @@ export default {
     AppFooter,
   },
   data() {
-    return {};
+    return {
+      footerSet: {
+        activeOrder:99
+      }
+    };
   },
   mounted() {},
   computed: {},

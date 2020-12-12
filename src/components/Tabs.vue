@@ -53,17 +53,15 @@ export default {
   &.room {
 .container {
    ul.tabs__header {
-          position: absolute;
-          width: 200px;
-          left: 50%;
-          transform: translateX(-50%);
-          box-shadow: none;
-          padding: 0;
-          background: #5fbb92;
-          height: 30px;
-          align-items: center;
-          overflow: hidden;
-           border-radius: 6px;
+        width: 200px;
+    padding: 0;
+    background: #5fbb92;
+    height: 30px;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
+    margin: 0 auto 30px auto;
+    box-shadow: none;
           li {
             font-family: "AppleSDGothicNeoSB00";
             font-size:14px;
@@ -81,7 +79,7 @@ export default {
           }
       }
       .tab-wrapper {
-        padding:30px 0 0 0;
+        padding:0;
       }
       }
 }
