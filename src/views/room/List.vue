@@ -6,12 +6,89 @@
     ></app-header>
       <div class="own-room">
         <tabs @reloadRoomList="reload($event)"> 
-           <div class="divider"></div>
           <tab :tabData="tab[0]">
-            <div class="container">11</div>
+            <div class="container">
+              <div class="item" v-for="(lisItem, index) in room" :key="index">
+               <div class="list">
+                <div class="status" :class="{ active: lisItem.isProceeding }">
+                  <span class="scale-caption" v-if="lisItem.isProceeding">진행중</span>
+                  <span class="scale-caption" v-else>진행종료</span>
+                </div>
+                <h4 class="title scale-subtitle">{{ lisItem.title }}</h4>
+                <div class="info">
+                  <p class="scale-body">{{ lisItem.time }}</p>
+                  <div class="flex-paragraph">
+                    <p class="scale-body">{{ lisItem.content }}</p>
+                    <span class="scale-caption">{{ lisItem.currentPersonnel }}/{{ lisItem.maxPersonnel }}</span>
+                  </div>
+                </div>
+               </div>
+              <div class="action" :class="{ isProceeding: lisItem.isProceeding }">
+                <div class="a-item-wrap" v-if="lisItem.isProceeding">
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 삭제</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 정보 수정</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">신청자 목록</span>
+                </div>
+                </div>
+                <div class="a-item-wrap" v-else>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 상세보기</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">신청자 목록보기</span>
+                </div>
+                
+                </div>
+              </div>
+              </div>
+            </div>
           </tab>
           <tab :tabData="tab[1]">
-            <div class="container">22</div>
+            <div class="container">
+              <div class="item" v-for="(lisItem, index) in room" :key="index">
+               <div class="list">
+                <div class="status" :class="{ active: lisItem.isProceeding }">
+                  <span class="scale-caption" v-if="lisItem.isProceeding">진행중</span>
+                  <span class="scale-caption" v-else>진행종료</span>
+                </div>
+                <h4 class="title scale-subtitle">{{ lisItem.title }}</h4>
+                <div class="info">
+                  <p class="scale-body">{{ lisItem.time }}</p>
+                  <div class="flex-paragraph">
+                    <p class="scale-body">{{ lisItem.content }}</p>
+                    <span class="scale-caption">{{ lisItem.currentPersonnel }}/{{ lisItem.maxPersonnel }}</span>
+                  </div>
+                </div>
+               </div>
+              <div class="action" :class="{ isProceeding: lisItem.isProceeding }">
+                <div class="a-item-wrap" v-if="lisItem.isProceeding">
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 삭제</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 정보 수정</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">신청자 목록</span>
+                </div>
+                </div>
+                <div class="a-item-wrap" v-else>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">방 상세보기</span>
+                </div>
+                <div class="a-item" @click="preparing()">
+                  <span class="scale-body-2">신청자 목록보기</span>
+                </div>
+                
+                </div>
+              </div>
+              </div>
+            </div>
           </tab>
         </tabs>
       </div>
@@ -60,7 +137,7 @@ export default {
       if (order === 0) {
         room = [
           {
-            isPick: true,
+            isProceeding: true,
             title: "짜장면 먹으러가실 분!",
             time: "PM 12:30",
             content: "중화요리전문점",
@@ -68,7 +145,7 @@ export default {
             currentPersonnel: 2,
           },
           {
-            isPick: false,
+            isProceeding: false,
             title: "쌀국수 어때요?",
             time: "PM 18:30",
             content: "미분당",
@@ -79,7 +156,7 @@ export default {
       } else if (order === 1) {
         room = [
           {
-            isPick: false,
+            isProceeding: false,
             title: "쌀국수 어때요?",
             time: "PM 18:30",
             content: "미분당",
@@ -87,7 +164,7 @@ export default {
             currentPersonnel: 1,
           },
           {
-            isPick: true,
+            isProceeding: true,
             title: "짜장면 먹으러가실 분!",
             time: "PM 12:30",
             content: "중화요리전문점",
@@ -97,6 +174,9 @@ export default {
         ];
       }
       this.room = room;
+    },
+    preparing() {
+      alert("준비중입니다.")
     },
     prev() {
       this.transData.prevUrl = "/room";
@@ -111,10 +191,83 @@ export default {
     position: relative;
     padding:54px 0 0 0;
     .tab-wrapper {
-      padding:10px 0 0 0;
     }
    .container {
      padding: 0;
+     .item {
+       .list {
+          padding: 30px 24px;
+          cursor:pointer;
+          &:hover {
+            background:rgba(95,187,146,0.25);
+          }
+         .status {
+           border-radius: 6px;
+           background:rgb(141,143,145);
+           margin:0 0 8px 0;
+           width:fit-content;
+           &.active {
+             background:rgb(35,204,137);
+           }
+           span {
+             color:#fff;
+             padding:0 5px;
+             display:block;
+             line-height: 22px;
+           }
+         }
+         .title {
+           margin:0 0 10px 0;
+           font-weight:normal;
+         }
+       }
+       .info {
+         .flex-paragraph {
+           display:flex;
+           justify-content: space-between;
+           p {
+
+           }
+           span {
+             color:rgb(141,143,145);
+           }
+         }
+         p {
+           &:first-of-type {
+             margin:0;
+           }
+           margin:8px 0 0 0;
+         }
+       }
+       .action {
+          border: 0px solid rgb(215, 218, 220);
+          border-width:1px 0;
+          .a-item-wrap {
+            display:flex;
+         .a-item {
+           border:0px solid rgb(215,218,220);
+           border-width:0 0 0 1px;
+           width:calc(100% / 2);
+           text-align:center;
+           padding:10px 0;
+           cursor:pointer;
+           &.isProceeding {
+              width:calc(100% / 3);
+           }
+           &:first-of-type {
+             border-width:0 0 0 0;
+           }
+           &:hover {
+             background:#e9e9e9;
+           }
+           span {
+             color:rgb(41,42,43);
+             font-weight:normal;
+           }
+         }
+          }
+       }
+     }
    }
   }
 }

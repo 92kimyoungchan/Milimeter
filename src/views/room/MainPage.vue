@@ -24,7 +24,7 @@
       <div class="room-list">
         <tabs @reloadRoomList="reload($event)">
           <tab :tabData="tab[0]">
-            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'">
+            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'" @click="preparing()">
               <div class="circle-ab" @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
                 <img src="@/assets/images/like_icon.svg" v-else />
@@ -52,7 +52,7 @@
             </div>
           </tab>
           <tab :tabData="tab[1]">
-            <div class="room" v-for="(rItem, index) in room" :key="index + 'B'">
+            <div class="room" v-for="(rItem, index) in room" :key="index + 'B'" @click="preparing()">
               <div class="circle-ab"  @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
                 <img src="@/assets/images/like_icon.svg" v-else />
@@ -130,6 +130,9 @@ export default {
         
       }
      
+    },
+    preparing() {
+      alert("준비중입니다.");
     },
     reload(order) {
       let room;

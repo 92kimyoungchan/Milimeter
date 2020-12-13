@@ -51,12 +51,6 @@ export default {
 <style lang="scss" scoped>
 .app-wrap {
   .own-room {
-    .divider {
-       height: 10px;
-    background:linear-gradient(to bottom, #eeeeee, rgba(215, 218, 220, 0.31));
-    margin:0;
-    top: 102px;
-    }
    ul.tabs__header {
         width: 100%;
     padding: 0;
