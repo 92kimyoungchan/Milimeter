@@ -53,7 +53,7 @@ export default {
       if (order === 0) {
         this.$router.push('/room');
       } else if (order === 1) {
-        
+        this.$router.push('/listRoom');
       } else if (order === 2) {
         this.$router.push('/createRoom');
       } else if (order === 3) {
