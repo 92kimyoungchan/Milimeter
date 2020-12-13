@@ -88,7 +88,7 @@ export default {
         await this.LOGIN().then(() => {
           this.appLoginPassed = this.GET_JOIN_DONE;
           if (this.appLoginPassed) {
-            alert("로그인 끝");
+             this.$router.push("/room");
           } else {
             this.$router.push("/about");
           }

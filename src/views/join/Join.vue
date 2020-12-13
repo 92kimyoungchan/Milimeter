@@ -28,16 +28,12 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button type="button" class="scale-subtitle" @click="goSecond()">
-          다음
-        </button>
+        <button type="button" class="scale-subtitle" @click="goSecond()">다음</button>
       </div>
     </div>
     <div class="container" v-else>
       <div class="title">
-        <p class="welcome-comment scale-body">
-          {{ form.name.value }} 님 반가워요:)
-        </p>
+        <p class="welcome-comment scale-body">{{ form.name.value }} 님 반가워요:)</p>
         <h2 class="scale-h1">성별과 연령대를<br />알려주세요!</h2>
         <span class="status scale-body">(2/2)</span>
       </div>
@@ -65,11 +61,9 @@
               </div>
               <span class="radio-name scale-body">여성</span>
             </div>
-            <span
-              class="warn-message scale-caption"
-              v-if="form.gender.hasError"
-              >{{ form.gender.errorTxt }}</span
-            >
+            <span class="warn-message scale-caption" v-if="form.gender.hasError">{{
+              form.gender.errorTxt
+            }}</span>
           </div>
         </div>
         <div class="article">
@@ -90,31 +84,31 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button type="button" class="scale-subtitle" @click="done()">
-          다음
-        </button>
+        <button type="button" class="scale-subtitle" @click="done()">다음</button>
       </div>
     </div>
     <div class="bgimg"></div>
-    <add-popup v-if="checkPopup" :popupSet="popupSet" />
+    <default-popup v-if="checkPopup" :popupSet="popupSet" />
   </div>
 </template>
 <script>
 import AppHeader from "@/components/AppHeader.vue";
-import AddPopup from "@/components/AddPopup";
+import DefaultPopup from "@/components/DefaultPopup";
 import { mapActions, mapState, mapMutations } from "vuex";
 import Firebase from "firebase";
 import { setCookie } from "@/utils/cookie";
 export default {
   components: {
     AppHeader,
-    AddPopup,
+    DefaultPopup
   },
   data() {
-    return {
+      return {
       popupSet: {
         confirmBtnText: "확인",
         nextLink: "/",
+        buttonType: "default",
+        iconUrl: "cancel_alert_icon.svg"
       },
       transData: {
         headerName: "회원가입",
@@ -188,8 +182,7 @@ export default {
       const topWidget = document.querySelector(".app-header");
       const topBg = document.querySelector(".rotate");
       const topValue =
-        topWidget.getBoundingClientRect().height +
-        topBg.getBoundingClientRect().height;
+        topWidget.getBoundingClientRect().height + topBg.getBoundingClientRect().height;
       this.contextPaddingTop = topValue;
       this.topWidgetHeight = topWidget.getBoundingClientRect().height;
     },
@@ -224,6 +217,7 @@ export default {
       });
     },
     async done() {
+      const transPopItem = [];
       if (!this.form.name.flag) {
         this.form.name.hasError = true;
         this.step2 = false;
@@ -316,8 +310,7 @@ Firebase.auth()
       return true;
     },
     selectGender(order) {
-      const lengthValue = document.querySelector(".radio-btn-wrap")
-        .childElementCount;
+      const lengthValue = document.querySelector(".radio-btn-wrap").childElementCount;
       for (var i = 0; i < lengthValue; i++) {
         if (
           document
@@ -329,9 +322,7 @@ Firebase.auth()
             .children[i].classList.remove("active");
         }
       }
-      document
-        .querySelector(".radio-btn-wrap")
-        .children[order].classList.add("active");
+      document.querySelector(".radio-btn-wrap").children[order].classList.add("active");
 
       if (order === 0) {
         this.form.gender.value = "M";
@@ -385,6 +376,19 @@ Firebase.auth()
         return birth;
       }
     },
+    checkPops() {
+         this.SET_POPUP(true);
+        this.popupSet.title = "입력값 확인";
+        this.popupSet.content =
+          "기입되지 않았거나 잘못 기입된 항목이 있습니다. 확인해주세요.";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.cancelBtnText = "취소";
+        this.popupSet.confirmBtnText = "확인";
+        
+    },
+  },
+  created() {
+    this.checkPops();
   },
 };
 </script>

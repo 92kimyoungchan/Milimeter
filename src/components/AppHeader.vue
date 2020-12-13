@@ -87,7 +87,7 @@ export default {
   padding: 0;
   position: fixed;
   width: calc(100% - 48px);
-  z-index: 100;
+  z-index: 2;
   //box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   box-shadow: none;
   background-color: #fff;

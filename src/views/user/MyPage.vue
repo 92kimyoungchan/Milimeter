@@ -130,7 +130,7 @@ export default {
     display: flex;
     align-items: center;
     position: fixed;
-    z-index: 99;
+    z-index: 2;
     top: 0;
     .divider {
       position: absolute;

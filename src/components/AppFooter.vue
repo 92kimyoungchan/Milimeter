@@ -70,7 +70,7 @@ export default {
   height: 72px;
   width: 100%;
   border-top: 1px solid #d7dadc;
-  z-index: 10;
+  z-index: 1;
   background: #FFF;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.33);
   .menu {

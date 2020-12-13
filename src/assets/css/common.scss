@@ -1,10 +1,61 @@
 @charset "UTF-8";
 
 /* 팝업*/
+.modal-mask .modal-wrapper .modal-container  {
+  background-color:#fff !important;
+  border-radius:8px;
+  display:flex;
+  .modal-body {
+  padding:0 !important;
+  height: inherit;
+  .pop {
+    padding: 0px 0 50px 0;
+    position: relative;
+    height: 100%;
+    .context { 
+      padding: 30px;
+      .p-icon {
+        margin:0 auto;
+        text-align:center;
+        margin: 0 0 10px 0;
+        img {
 
+        }
+      }
+      .p-title {
+        font-weight: normal;
+        text-align: center;
+        margin: 0 0 10px 0;
+      }
+    }
+    .p-btn-wrap {
+      height:50px;
+      position:absolute;
+      bottom:0;
+      width: 100%;
+      .item {
+        display:flex;
+        width: 100%;
+        height:inherit;
+        &.default {
+          button {
+            width:50%;
+          }
+        }
+        button {
+          height: 100%;
+          border:0;
+          background: transparent;
+          border: 1px solid rgb(215,218,220);
+        }
+      }
+    }
+  }
+}
+}
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
@@ -29,42 +80,6 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      &.topImg {
-        .modal_imgWrap {
-          margin-top: -60px;
-        }
-      }
-
-      &.longHeight {
-        .modal-body {
-          div {
-            min-height: 220px;
-          }
-        }
-      }
-
-      &.bigModal {
-        width: 90%;
-        height: 80%;
-        max-width: 500px;
-        max-height: 500px;
-
-        .modal-body {
-          div {
-            max-height: 370px;
-            overflow-y: scroll;
-
-            p {
-              margin-bottom: 7px;
-
-              b {
-                font-weight: bold;
-              }
-            }
-          }
-        }
-      }
-
       .modal-header {
         display: flex;
         justify-content: center;
@@ -73,34 +88,14 @@
           margin-top: 0;
           color: #42b983;
         }
-
-        .modal_closeBtn {
-          position: absolute;
-          right: 0;
-          cursor: pointer;
-          top: 0;
-        }
       }
-      .modal-flex {
-        display: flex;
-        height: calc(100% - 52px);
-        flex-wrap: wrap;
-        p {
-          width: 100%;
-        }
-        .modal-body {
-          flex-wrap:wrap;
-        }
-      }
+     
       .modal-body {
         padding: 12px 10px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        div {
-          width: 100%;
-        }
         h3 {
           font-size: 17px;
           font-weight: normal;
@@ -157,39 +152,6 @@
         bottom: 0;
         width: 100%;
         left: 0;
-        .modalInput {
-          padding-bottom: 15px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-wrap: wrap;
-
-          span {
-            font-size: 0.625rem;
-            display: block;
-            color: #ff6565;
-            width: 100%;
-            text-align: right;
-            padding: 0 12px 2px 0;
-          }
-
-          textarea {
-            width: 100%;
-            max-width: 238px;
-            height: 50px;
-            border: solid 0.5px #8e8e93;
-            background-color: #ffffff;
-            color: #000;
-            font-size: 13px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: 1.38;
-            letter-spacing: 0px;
-            padding: 4px;
-          }
-        }
-
         .modal_btnWrap {
           width: 100%;
           display: flex;
@@ -200,17 +162,6 @@
               width: 100%;
             }
           }
-
-          &.triple {
-            button {
-              &:first-of-type {
-              }
-
-              &:last-of-type {
-              }
-            }
-          }
-
           button {
             border: 0;
             color: #ff7f1f;
@@ -246,32 +197,7 @@
             }
           }
         }
-        .modal_outSide {
-          position: absolute;
-          bottom: -62px;
-          left: 0;
-          border-radius: 5px;
-          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
-          background-color: #2a2a2a;
-          padding: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          cursor: pointer;
-
-          button {
-            border: 0;
-            background-color: #2a2a2a;
-            color: #fff;
-            font-family: NotoSansCJKkr;
-            font-size: 1.25rem;
-            font-weight: 500;
-            line-height: 1.43;
-            padding-left: 17px;
-            cursor: pointer;
-          }
-        }
+       
       }
     }
   }
