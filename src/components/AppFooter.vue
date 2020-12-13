@@ -32,12 +32,12 @@ export default {
         },
         {
             defaultUrl: "list_disabled_icon.svg",
-          ActiveUrl: "list_active_icon.svg",
+          ActiveUrl: "applylist_active_icon.svg",
           title: "신청목록"
         },
         {
             defaultUrl: "plusroom_disabled_icon.svg",
-          ActiveUrl: "plusroom_active_icon.svg",
+          ActiveUrl: "plusroom_disabled_icon.svg",
           title: "방만들기"
         },
         {
@@ -55,9 +55,9 @@ export default {
       } else if (order === 1) {
         
       } else if (order === 2) {
-        
+        this.$router.push('/createRoom');
       } else if (order === 3) {
-        
+        this.$router.push('/MyPage');
       }
     }
   },

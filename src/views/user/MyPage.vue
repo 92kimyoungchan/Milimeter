@@ -103,7 +103,7 @@ export default {
   data() {
     return {
       footerSet: {
-        activeOrder:99
+        activeOrder:3
       }
     };
   },

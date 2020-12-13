@@ -10,7 +10,7 @@
     >
       <img src="@/assets/images/menu.svg" />
     </div>
-    <h3 class="scale-body">{{ headerTitle }}</h3>
+    <h3 class="scale-title">{{ headerTitle }}</h3>
     <div class="direction right" @click="home" v-if="rightButton === 'home'">
       <img src="@/assets/images/home.svg" />
     </div>
@@ -101,6 +101,7 @@ export default {
     margin: 0;
     position: absolute;
     width: 100%;
+    font-weight:normal;
   }
   .direction {
     cursor: pointer;

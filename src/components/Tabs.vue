@@ -50,6 +50,59 @@ export default {
 </script>
 <style lang="scss" scoped>
 .app-wrap {
+  .own-room {
+    .divider {
+       height: 10px;
+    background:linear-gradient(to bottom, #eeeeee, rgba(215, 218, 220, 0.31));
+    margin:0;
+    top: 102px;
+    }
+   ul.tabs__header {
+        width: 100%;
+    padding: 0;
+    background: transparent;
+    height: 48px;
+    align-items: center;
+    overflow: hidden;
+    margin: 0;
+    box-shadow: none;
+          li {
+            font-family: "AppleSDGothicNeoSB00";
+    line-height: 48px;
+    font-size: 18px;
+            text-align:center;
+            color: rgb(141,143,145);
+            border-radius: 6px;
+              position:relative;
+              &:after {
+                 content: "";
+                height: 3px;
+                background: transparent;
+                width: 0;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: .5s;
+              }
+            &.tab__selected {
+              color: rgb(95,187,146);
+              &:after {
+                content: "";
+                height: 3px;
+                background: #5fbb92;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transition: .5s;
+              }
+            }
+          }
+      }
+      .tab-wrapper {
+        padding:0;
+      }
+  }
   &.room {
 .container {
    ul.tabs__header {

@@ -121,7 +121,15 @@ export default {
   computed: {},
   methods: {
     pickItem(order) {
-      this.room[order].isPick = !this.room[order].isPick;
+      if (this.room[order].isPick) {
+       alert("찜 목록에 삭제되었습니다.")
+       this.room[order].isPick = false;
+      } else {
+        alert("찜 목록에서 추가되었습니다.")
+        this.room[order].isPick = true;
+        
+      }
+     
     },
     reload(order) {
       let room;

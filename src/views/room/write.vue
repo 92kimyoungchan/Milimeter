@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrap">
+  <div class="app-wrap comprise-footer">
     <div class="controller">
       <div class="submit-wrap">
         <span class="cancel scale-subtitle" @click="prev()">취소</span>
@@ -8,7 +8,7 @@
       <h3 class="title scale-title">방 만들기</h3>
     </div>
     <div class="divider"></div>
-    <div class="room-info">
+    <div class="room-info comprise-footer">
       <div class="article">
         <h5 class="title scale-subtitle">방 제목</h5>
         <div class="input-wrap">
@@ -33,7 +33,7 @@
             :max="8"
             ref="slider"
             v-model="form.personel.value"
-            @input="touchSlider()"
+            @onChange="touchSlider()"
           ></vue-range-slider>
         </div>
       </div>
@@ -113,7 +113,7 @@
         </div>
       </div>
       <div class="article">
-        <h5 class="title scale-subtitle">음식점<b>(선택사항)</b></h5>
+        <h5 class="title scale-subtitle">음식점 <b>(선택사항)</b></h5>
         <div class="input-wrap">
           <input type="text"
                  placeholder="음식점을 입력해주세요."
@@ -126,7 +126,7 @@
       </div>
     </div>
     <app-footer :footerSet="footerSet"></app-footer>
-  </div>
+    </div>
 </template>
 <script>
 import AppFooter from "@/components/AppFooter.vue";
@@ -140,7 +140,7 @@ export default {
   data() {
     return {
       footerSet: {
-        activeOrder: 0,
+        activeOrder: 2,
       },
      form: {
        title: {
@@ -190,6 +190,24 @@ export default {
   mounted() {},
   computed: {},
   methods: {
+    prev() {
+      this.$router.push("/room")
+    },
+    create() {
+      const roomInfo = {
+        title: this.form.title.value,
+        personel: this.form.personel.value,
+        gender: this.form.gender.value,
+        mealTime: this.form.mealTime.value,
+        minAge: this.form.minAge.value,
+        maxAge: this.form.maxAge.value,
+        store: this.form.store.value
+      }
+      const purpose = confirm("방 제목 :"+ roomInfo.title +"\n" +"참여 인원 수 :"+ roomInfo.personel +"\n" +"성별 :"+ roomInfo.gender +"\n" +"식사시간 :"+ roomInfo.mealTime +"\n" +"최소 나이 :"+ roomInfo.minAge +"\n" +"최대 나이 :"+ roomInfo.maxAge +"\n" +"음식점 :"+ roomInfo.store);
+      if (purpose) {
+        this.$router.push("/room");
+      }
+    },
     checkTitle() {
       this.form.title.flag = false;
       this.form.title.hasError = true;
@@ -331,6 +349,9 @@ export default {
   }
   .room-info {
     margin:0;
+    &.comprise-footer {
+    padding: 0 0 72px 0;
+  }
     .article {
       padding:35px;
       border: 0px solid rgb(238,241,243);

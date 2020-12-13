@@ -520,10 +520,16 @@ ul.tabs__header li.tab__selected {
   top: -10px !important;
   -webkit-box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.13);
           box-shadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.13);
+  border-radius: 50%;
+}
+
+.range-wrap .vue-range-slider.slider-component .slider .slider-dot .slider-dot-handle {
+  background: transparent;
 }
 
 .range-wrap .vue-range-slider.slider-component .slider {
   height: 2px !important;
+  background-color: #5fbb92;
 }
 
 /** 라디오 인풋 */
