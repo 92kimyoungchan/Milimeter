@@ -105,7 +105,10 @@
     align-items: center;
     justify-content: center;
     z-index: 2;
-
+    &.active {
+      opacity: 1;
+     
+    }
     button {
       color: #fff;
       background: 0;

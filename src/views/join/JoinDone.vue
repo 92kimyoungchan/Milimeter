@@ -22,6 +22,12 @@ export default {
   data() {
     return {};
   },
+  created() {
+    
+      setTimeout(() => {
+        this.$router.push("/room");
+      }, 1300);
+  },
   mounted() {},
   computed: {},
   methods: {},

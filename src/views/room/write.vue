@@ -126,21 +126,31 @@
       </div>
     </div>
     <app-footer :footerSet="footerSet"></app-footer>
+     <default-popup v-if="checkPopup" :popupSet="popupSet" />
     </div>
 </template>
 <script>
 import AppFooter from "@/components/AppFooter.vue";
 import VueRangeSlider from "vue-range-component";
 import "vue-range-component/dist/vue-range-slider.css";
+import DefaultPopup from "@/components/DefaultPopup";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   components: {
     AppFooter,
-    VueRangeSlider
+    VueRangeSlider,
+    DefaultPopup,
   },
   data() {
     return {
       footerSet: {
         activeOrder: 2,
+      },
+      popupSet: {
+        confirmBtnText: "확인",
+        nextLink: null,
+        buttonType: "default",
+        iconUrl: "cancel_alert_icon.svg"
       },
      form: {
        title: {
@@ -188,8 +198,11 @@ export default {
     };
   },
   mounted() {},
-  computed: {},
+  computed: {
+      ...mapState("basic", ["checkPopup"]),
+  },
   methods: {
+        ...mapMutations("basic", ["SET_POPUP"]),
     prev() {
       this.$router.push("/room")
     },
@@ -203,10 +216,15 @@ export default {
         maxAge: this.form.maxAge.value,
         store: this.form.store.value
       }
-      const purpose = confirm("방 제목 :"+ roomInfo.title +"\n" +"참여 인원 수 :"+ roomInfo.personel +"\n" +"성별 :"+ roomInfo.gender +"\n" +"식사시간 :"+ roomInfo.mealTime +"\n" +"최소 나이 :"+ roomInfo.minAge +"\n" +"최대 나이 :"+ roomInfo.maxAge +"\n" +"음식점 :"+ roomInfo.store);
-      if (purpose) {
-        this.$router.push("/room");
-      }
+      sessionStorage.setItem("roomInfo", JSON.stringify(roomInfo));
+       this.SET_POPUP(true);
+        this.popupSet.title = "방 관리";
+        this.popupSet.content =
+          "방 생성이 완료됬습니다. !";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "확인";
+        this.popupSet.buttonType = "alone"
+        this.popupSet.nextLink = "/room";
     },
     checkTitle() {
       this.form.title.flag = false;

@@ -194,6 +194,9 @@ export default {
         margin: 0 auto;
         border-radius: 4px;
         overflow: hidden;
+        &:hover {
+          background: #40a067;
+        }
         button {
           padding: 0;
           border: 0;
@@ -201,6 +204,7 @@ export default {
           height: inherit;
           color: #fff;
           background: transparent;
+          line-height:32px;
         }
       }
     }

@@ -27,8 +27,8 @@
           }}</span>
         </div>
       </div>
-      <div class="button-wrap">
-        <button type="button" class="scale-subtitle" @click="goSecond()">다음</button>
+      <div class="button-wrap" :class="{active: form.name.flag}">
+        <button type="button" class="scale-subtitle"  @click="goSecond()">다음</button>
       </div>
     </div>
     <div class="container" v-else>
@@ -83,7 +83,7 @@
           }}</span>
         </div>
       </div>
-      <div class="button-wrap">
+      <div class="button-wrap" :class="{active: form.birth.flag && form.gender.flag}">
         <button type="button" class="scale-subtitle" @click="done()">다음</button>
       </div>
     </div>
@@ -106,7 +106,7 @@ export default {
       return {
       popupSet: {
         confirmBtnText: "확인",
-        nextLink: "/",
+        nextLink: null,
         buttonType: "default",
         iconUrl: "cancel_alert_icon.svg"
       },
@@ -192,7 +192,13 @@ export default {
         this.transData.prevUrl = "another";
       } else {
         this.form.name.hasError = true;
-        alert("닉네임을 입력해주세요.");
+        this.SET_POPUP(true);
+        this.popupSet.title = "닉네임 확인";
+        this.popupSet.content =
+          "닉네임을 확인해주세요.";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "확인";
+        this.popupSet.buttonType = "alone"
       }
     },
     appAuthCheck() {
@@ -221,17 +227,35 @@ export default {
       if (!this.form.name.flag) {
         this.form.name.hasError = true;
         this.step2 = false;
-        alert("닉네임!을 입력해주세요.");
+        this.SET_POPUP(true);
+        this.popupSet.title = "닉네임 확인";
+        this.popupSet.content =
+          "닉네임을 확인해주세요.";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "확인";
+        this.popupSet.buttonType = "alone"
         return false;
       }
       if (!this.form.gender.flag) {
         this.form.gender.hasError = true;
-        alert("성별을 선택해주세요.");
+        this.SET_POPUP(true);
+        this.popupSet.title = "성별 확인";
+        this.popupSet.content =
+          "성별을 확인해주세요.";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "확인";
+        this.popupSet.buttonType = "alone"
         return false;
       }
       if (!this.form.birth.flag) {
         this.form.birth.hasError = true;
-        alert("생년월일을 입력해주세요.");
+        this.SET_POPUP(true);
+        this.popupSet.title = "생년월일 확인";
+        this.popupSet.content =
+          "생년월일을 확인해주세요.";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "확인";
+        this.popupSet.buttonType = "alone"
         return false;
       }
       const userData = {
@@ -244,19 +268,7 @@ export default {
       await this.preApi();
       await this.JOIN_USER(userData).then(() => {
         sessionStorage.setItem("joinUserId", userData.userId);
-        const item1 = {
-          title: "회원가입 완료",
-          content: "회원가입을 완료하였습니다.",
-        };
-        transPopItem.push(item1);
-        this.popupSet.count = "noticePop";
-        this.popupSet.inPopItem = transPopItem;
-        this.SET_POPUP(true);
-        this.popupSet.modalImg = "cha.svg";
-        this.popupSet.doQuit = true;
-        this.popupSet.title = undefined;
-        this.popupSet.content = undefined;
-        this.popupSet.nextLink = "/joinDone";
+         this.$router.push("/joinDone");
       });
       /* 
 Firebase.auth()
@@ -375,20 +387,9 @@ Firebase.auth()
         birth += number.substr(6, 2);
         return birth;
       }
-    },
-    checkPops() {
-         this.SET_POPUP(true);
-        this.popupSet.title = "입력값 확인";
-        this.popupSet.content =
-          "기입되지 않았거나 잘못 기입된 항목이 있습니다. 확인해주세요.";
-        this.popupSet.popType = "defaultType";
-        this.popupSet.cancelBtnText = "취소";
-        this.popupSet.confirmBtnText = "확인";
-        
-    },
+    }
   },
   created() {
-    this.checkPops();
   },
 };
 </script>

@@ -24,7 +24,7 @@
       <div class="room-list">
         <tabs @reloadRoomList="reload($event)">
           <tab :tabData="tab[0]">
-            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'" @click="preparing()">
+            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'">
               <div class="circle-ab" @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
                 <img src="@/assets/images/like_icon.svg" v-else />
@@ -52,7 +52,7 @@
             </div>
           </tab>
           <tab :tabData="tab[1]">
-            <div class="room" v-for="(rItem, index) in room" :key="index + 'B'" @click="preparing()">
+            <div class="room" v-for="(rItem, index) in room" :key="index + 'B'">
               <div class="circle-ab"  @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
                 <img src="@/assets/images/like_icon.svg" v-else />
@@ -83,6 +83,7 @@
       </div>
     </div>
     <app-footer :footerSet="footerSet"></app-footer>
+     <default-popup v-if="checkPopup" :popupSet="popupSet" />
   </div>
 </template>
 <script>
@@ -90,15 +91,24 @@ import AppFooter from "@/components/AppFooter.vue";
 import vSelect from "vue-select";
 import Tabs from "@/components/Tabs.vue";
 import Tab from "@/components/Tab.vue";
+import DefaultPopup from "@/components/DefaultPopup";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   components: {
     AppFooter,
     Tab,
     Tabs,
+    DefaultPopup,
     vSelect,
   },
   data() {
     return {
+       popupSet: {
+        confirmBtnText: "확인",
+        nextLink: null,
+        buttonType: "default",
+        iconUrl: "cancel_alert_icon.svg"
+      },
       footerSet: {
         activeOrder: 0,
       },
@@ -118,25 +128,40 @@ export default {
     };
   },
   mounted() {},
-  computed: {},
+  created() {
+    console.log("dsds",JSON.parse(sessionStorage.getItem("roomInfo")).gender);
+  },
+  computed: {
+      ...mapState("basic", ["checkPopup"]),
+  },
   methods: {
+    ...mapMutations("basic", ["SET_POPUP"]),
     pickItem(order) {
       if (this.room[order].isPick) {
-       alert("찜 목록에 삭제되었습니다.")
-       this.room[order].isPick = false;
+       this.SET_POPUP(true);
+        this.popupSet.title = "찜 목록에서 삭제";
+        this.popupSet.content =
+          "찜목록에서 삭제할까요?";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "네..";
+        this.popupSet.buttonType = "alone"
+        this.room[order].isPick = false;
       } else {
-        alert("찜 목록에서 추가되었습니다.")
-        this.room[order].isPick = true;
-        
+        this.SET_POPUP(true);
+        this.popupSet.title = "찜 목록에 추가";
+        this.popupSet.content =
+          "찜목록에 추가할까요?";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.confirmBtnText = "네!";
+        this.popupSet.buttonType = "alone"
+       this.room[order].isPick = true;
       }
      
     },
-    preparing() {
-      alert("준비중입니다.");
-    },
     reload(order) {
       let room;
-      if (order === 0) {
+      if (JSON.parse(sessionStorage.getItem("roomInfo")) === null) {
+        if (order === 0) {
         room = [
           {
             isPick: true,
@@ -145,15 +170,7 @@ export default {
             content: "중화요리전문점",
             maxPersonnel: 6,
             currentPersonnel: 2,
-          },
-          {
-            isPick: false,
-            title: "쌀국수 어때요?",
-            time: "PM 18:30",
-            content: "미분당",
-            maxPersonnel: 2,
-            currentPersonnel: 1,
-          },
+          }
         ];
       } else if (order === 1) {
         room = [
@@ -163,7 +180,7 @@ export default {
             time: "PM 18:30",
             content: "미분당",
             maxPersonnel: 2,
-            currentPersonnel: 1,
+            currentPersonnel: 2,
           },
           {
             isPick: true,
@@ -175,6 +192,56 @@ export default {
           },
         ];
       }
+      } else {
+        if (order === 0) {
+        room = [
+          {
+            isPick: true,
+            title: "짜장면 먹으러가실 분!",
+            time: "PM 12:30",
+            content: "중화요리전문점",
+            maxPersonnel: 6,
+            currentPersonnel: 2,
+          }, 
+          {
+            isPick: false,
+            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
+            time: "PM 19:30",
+            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
+            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
+            currentPersonnel: 1,
+          }
+        ];
+      } else if (order === 1) {
+        room = [
+          {
+            isPick: true,
+            title: "짜장면 먹으러가실 분!",
+            time: "PM 12:30",
+            content: "중화요리전문점",
+            maxPersonnel: 6,
+            currentPersonnel: 2,
+          },
+          {
+            isPick: false,
+            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
+            time: "PM 19:30",
+            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
+            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
+            currentPersonnel: 1,
+          },
+           {
+            isPick: false,
+            title: "쌀국수 어때요?",
+            time: "PM 18:30",
+            content: "미분당",
+            maxPersonnel: 2,
+            currentPersonnel: 2,
+          },
+        ];
+      }
+      }
+      
       this.room = room;
     },
   },

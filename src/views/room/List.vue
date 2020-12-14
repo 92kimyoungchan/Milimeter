@@ -25,21 +25,21 @@
                </div>
               <div class="action" :class="{ isProceeding: lisItem.isProceeding }">
                 <div class="a-item-wrap" v-if="lisItem.isProceeding">
-                <div class="a-item" @click="preparing()">
+                <div class="a-item" @click="deleteRoom()">
                   <span class="scale-body-2">방 삭제</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">방 정보 수정</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">신청자 목록</span>
                 </div>
                 </div>
                 <div class="a-item-wrap" v-else>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">방 상세보기</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">신청자 목록보기</span>
                 </div>
                 
@@ -67,21 +67,21 @@
                </div>
               <div class="action" :class="{ isProceeding: lisItem.isProceeding }">
                 <div class="a-item-wrap" v-if="lisItem.isProceeding">
-                <div class="a-item" @click="preparing()">
+                <div class="a-item" @click="deleteRoom()">
                   <span class="scale-body-2">방 삭제</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">방 정보 수정</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">신청자 목록</span>
                 </div>
                 </div>
                 <div class="a-item-wrap" v-else>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">방 상세보기</span>
                 </div>
-                <div class="a-item" @click="preparing()">
+                <div class="a-item">
                   <span class="scale-body-2">신청자 목록보기</span>
                 </div>
                 
@@ -93,6 +93,7 @@
         </tabs>
       </div>
     <app-footer :footerSet="footerSet"></app-footer>
+    <default-popup v-if="checkPopup" :popupSet="popupSet" />
   </div>
 </template>
 <script>
@@ -100,15 +101,25 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 import Tabs from "@/components/Tabs.vue";
 import Tab from "@/components/Tab.vue";
+import DefaultPopup from "@/components/DefaultPopup";
+import { mapState, mapMutations } from "vuex";
 export default {
   components: {
     AppHeader,
     AppFooter,
     Tab,
+    DefaultPopup,
     Tabs,
   },
   data() {
     return {
+      popupSet: {
+        confirmBtnText: "삭제",
+        cancelBtnText: "취소",
+        nextLink: null,
+        buttonType: "default",
+        iconUrl: "cancel_alert_icon.svg"
+      },
       footerSet: {
         activeOrder: 1,
       },
@@ -130,8 +141,13 @@ export default {
     };
   },
   mounted() {},
-  computed: {},
+  computed: {
+      ...mapState("basic", ["checkPopup"]),
+  },
+  created() {
+  },
   methods: {
+    ...mapMutations("basic", ["SET_POPUP"]),
     reload(order) {
       let room;
       if (order === 0) {
@@ -145,24 +161,16 @@ export default {
             currentPersonnel: 2,
           },
           {
-            isProceeding: false,
-            title: "쌀국수 어때요?",
-            time: "PM 18:30",
-            content: "미분당",
-            maxPersonnel: 2,
+            isProceeding: true,
+            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
+            time: "PM 19:30",
+            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
+            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
             currentPersonnel: 1,
-          },
+          }
         ];
       } else if (order === 1) {
         room = [
-          {
-            isProceeding: false,
-            title: "쌀국수 어때요?",
-            time: "PM 18:30",
-            content: "미분당",
-            maxPersonnel: 2,
-            currentPersonnel: 1,
-          },
           {
             isProceeding: true,
             title: "짜장면 먹으러가실 분!",
@@ -171,12 +179,47 @@ export default {
             maxPersonnel: 6,
             currentPersonnel: 2,
           },
+           {
+            isProceeding: true,
+            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
+            time: "PM 19:30",
+            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
+            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
+            currentPersonnel: 1,
+          },
+            {
+            isProceeding: false,
+            title: "쌀국수 어때요?",
+            time: "PM 18:30",
+            content: "미분당",
+            maxPersonnel: 2,
+            currentPersonnel: 1,
+          }
         ];
       }
       this.room = room;
     },
-    preparing() {
-      alert("준비중입니다.")
+    deleteRoom() {
+      const sampleRoom = [
+         {
+            isProceeding: true,
+            title: "짜장면 먹으러가실 분!",
+            time: "PM 12:30",
+            content: "중화요리전문점",
+            maxPersonnel: 6,
+            currentPersonnel: 2,
+          }
+      ]
+       this.SET_POPUP(true);
+        this.popupSet.title = "방 관리";
+        this.popupSet.content =
+          "방을 정말 삭제할까요?";
+        this.popupSet.popType = "defaultType";
+        this.popupSet.buttonType = "default",
+        this.popupSet.nextLink = null
+      setTimeout(() => {
+        this.room = sampleRoom;
+      }, 1500); 
     },
     prev() {
       this.transData.prevUrl = "/room";
@@ -193,7 +236,7 @@ export default {
     .tab-wrapper {
     }
    .container {
-     padding: 0;
+     padding: 0 0 72px 0;
      .item {
        .list {
           padding: 30px 24px;
