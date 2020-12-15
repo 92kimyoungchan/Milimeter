@@ -24,7 +24,8 @@
       <div class="room-list">
         <tabs @reloadRoomList="reload($event)">
           <tab :tabData="tab[0]">
-            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'">
+            <div class="room-wrap" v-if="room.length !== 0">
+            <div class="room" v-for="(rItem, index) in room" :key="index + 'A'" >
               <div class="circle-ab" @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
                 <img src="@/assets/images/like_icon.svg" v-else />
@@ -50,8 +51,19 @@
                 </div>
               </div>
             </div>
+            </div>
+            <div class="empty" v-else>
+              <div class="notice">
+                <h5 class="scale-subtitle">신청가능한 방이 없네요 :)</h5>
+                <h5 class="scale-subtitle">방을 직접 생성하시겠어요?</h5>
+                <div class="btn-wrap">
+                  <button type="button" class="scale-caption" @click="goWrite()">방 만들기</button>
+                </div>
+              </div>
+            </div>
           </tab>
           <tab :tabData="tab[1]">
+            <div class="room-wrap" v-if="room.length !== 0">
             <div class="room" v-for="(rItem, index) in room" :key="index + 'B'">
               <div class="circle-ab"  @click="pickItem(index)">
                 <img src="@/assets/images/unlike_icon.svg" v-if="!rItem.isPick" />
@@ -78,12 +90,22 @@
                 </div>
               </div>
             </div>
+            </div>
+            <div class="empty" v-else>
+              <div class="notice">
+                <h5 class="scale-subtitle">신청가능한 방이 없네요 :)</h5>
+                <h5 class="scale-subtitle">방을 직접 생성하시겠어요?</h5>
+                <div class="btn-wrap">
+                  <button type="button" class="scale-caption" @click="goWrite()">방 만들기</button>
+                </div>
+              </div>
+            </div>
           </tab>
         </tabs>
       </div>
     </div>
     <app-footer :footerSet="footerSet"></app-footer>
-     <default-popup v-if="checkPopup" :popupSet="popupSet" />
+     <default-popup v-if="checkPopup" :popupSet="popupSet" @receive-pick="doPick"/>
   </div>
 </template>
 <script>
@@ -92,7 +114,7 @@ import vSelect from "vue-select";
 import Tabs from "@/components/Tabs.vue";
 import Tab from "@/components/Tab.vue";
 import DefaultPopup from "@/components/DefaultPopup";
-import { mapActions, mapState, mapMutations } from "vuex";
+import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 export default {
   components: {
     AppFooter,
@@ -129,49 +151,56 @@ export default {
   },
   mounted() {},
   created() {
-    console.log("dsds",JSON.parse(sessionStorage.getItem("roomInfo")).gender);
+    console.log("가져온 방 생성 정보", this.GET_ROOM)
+    console.log("가져오기 카운트", this.GET_ROOM.title !== null)
   },
   computed: {
       ...mapState("basic", ["checkPopup"]),
+      ...mapGetters("room", ["GET_ROOM"]),
   },
   methods: {
     ...mapMutations("basic", ["SET_POPUP"]),
+    goWrite() {
+      this.$router.push("/createRoom");
+    },
+    doPick(order,flag) {
+      this.room[order].isPick = flag;
+    },
     pickItem(order) {
-      if (this.room[order].isPick) {
        this.SET_POPUP(true);
+       this.popupSet.buttonType = "default";
+      this.popupSet.popType = "pick";
+      this.popupSet.cancelBtnText = "취소" 
+      this.popupSet.pickFlag = this.room[order].isPick;
+      this.popupSet.pickOrder = order;
+      if (this.room[order].isPick) {
         this.popupSet.title = "찜 목록에서 삭제";
         this.popupSet.content =
           "찜목록에서 삭제할까요?";
-        this.popupSet.popType = "defaultType";
-        this.popupSet.confirmBtnText = "네..";
-        this.popupSet.buttonType = "alone"
-        this.room[order].isPick = false;
+        this.popupSet.confirmBtnText = "삭제";
       } else {
-        this.SET_POPUP(true);
         this.popupSet.title = "찜 목록에 추가";
         this.popupSet.content =
           "찜목록에 추가할까요?";
-        this.popupSet.popType = "defaultType";
-        this.popupSet.confirmBtnText = "네!";
-        this.popupSet.buttonType = "alone"
-       this.room[order].isPick = true;
-      }
-     
+        this.popupSet.confirmBtnText = "추가";
+      } 
     },
     reload(order) {
       let room;
-      if (JSON.parse(sessionStorage.getItem("roomInfo")) === null) {
         if (order === 0) {
-        room = [
-          {
-            isPick: true,
-            title: "짜장면 먹으러가실 분!",
-            time: "PM 12:30",
-            content: "중화요리전문점",
-            maxPersonnel: 6,
-            currentPersonnel: 2,
+          room = [];
+          if (this.GET_ROOM.title !== null) {
+          const item = {
+            isPick: false,
+            title: this.GET_ROOM.title,
+            time: this.GET_ROOM.mealTime,
+            content: this.GET_ROOM.store,
+            maxPersonnel: this.GET_ROOM.personel,
+            currentPersonnel: 1
           }
-        ];
+          room.push(item)
+        } 
+        this.room = room;
       } else if (order === 1) {
         room = [
           {
@@ -188,61 +217,23 @@ export default {
             time: "PM 12:30",
             content: "중화요리전문점",
             maxPersonnel: 6,
-            currentPersonnel: 2,
+            currentPersonnel: 6,
           },
         ];
-      }
-      } else {
-        if (order === 0) {
-        room = [
-          {
-            isPick: true,
-            title: "짜장면 먹으러가실 분!",
-            time: "PM 12:30",
-            content: "중화요리전문점",
-            maxPersonnel: 6,
-            currentPersonnel: 2,
-          }, 
-          {
+        if (this.GET_ROOM.title !== null) {
+          const item = {
             isPick: false,
-            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
-            time: "PM 19:30",
-            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
-            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
-            currentPersonnel: 1,
+            title: this.GET_ROOM.title,
+            time: this.GET_ROOM.mealTime,
+            content: this.GET_ROOM.store,
+            maxPersonnel: this.GET_ROOM.personel,
+            currentPersonnel: 1
           }
-        ];
-      } else if (order === 1) {
-        room = [
-          {
-            isPick: true,
-            title: "짜장면 먹으러가실 분!",
-            time: "PM 12:30",
-            content: "중화요리전문점",
-            maxPersonnel: 6,
-            currentPersonnel: 2,
-          },
-          {
-            isPick: false,
-            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
-            time: "PM 19:30",
-            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
-            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
-            currentPersonnel: 1,
-          },
-           {
-            isPick: false,
-            title: "쌀국수 어때요?",
-            time: "PM 18:30",
-            content: "미분당",
-            maxPersonnel: 2,
-            currentPersonnel: 2,
-          },
-        ];
+          room.unshift(item)
+        }
+        console.log("변경할 룸", room);
+        this.room = room;
       }
-      }
-      
-      this.room = room;
     },
   },
 };
@@ -275,6 +266,55 @@ export default {
     .container {
       padding: 0 35px;
       .room-list {
+        .room-wrap {
+
+        }
+        .empty {
+              display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: calc(50% - 125px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 265px;
+    background: #efefef;
+    height: 140px;
+    border-radius: 12px;
+          .notice {
+            h5 {
+              color: rgb(141,143,145);
+              margin: 5px 0 0 0;
+              font-weight: normal;
+              &:first-of-type {
+                margin:0;
+              }
+            }
+            .btn-wrap {
+              width: 86px;
+    height: 30px;
+    position: relative;
+    background: #eef1f3;
+    margin: 12.5px auto 0;
+    border: 1px solid #757676;
+    border-radius: 6px;
+    overflow: hidden;
+              button {
+                background: transparent;
+                border:0;
+                width: inherit;
+                line-height:30px;
+              }
+              &:hover {
+                border: 1px solid rgb(95, 187, 146);
+                button {
+                  background:rgb(95, 187, 146);
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
         .room {
           display: flex;
           align-items: center;

@@ -74,7 +74,7 @@
                   <span class="scale-body-2">방 정보 수정</span>
                 </div>
                 <div class="a-item">
-                  <span class="scale-body-2">신청자 목록</span>
+                  <span class="scale-body-2" @click="managePlayer()">신청자 목록</span>
                 </div>
                 </div>
                 <div class="a-item-wrap" v-else>
@@ -82,7 +82,7 @@
                   <span class="scale-body-2">방 상세보기</span>
                 </div>
                 <div class="a-item">
-                  <span class="scale-body-2">신청자 목록보기</span>
+                  <span class="scale-body-2" @click="managePlayer2()">신청자 목록보기</span>
                 </div>
                 
                 </div>
@@ -93,7 +93,7 @@
         </tabs>
       </div>
     <app-footer :footerSet="footerSet"></app-footer>
-    <default-popup v-if="checkPopup" :popupSet="popupSet" />
+    <default-popup v-if="checkPopup" :popupSet="popupSet" @receive-deleteList="deleteAct"/>
   </div>
 </template>
 <script>
@@ -102,7 +102,7 @@ import AppFooter from "@/components/AppFooter.vue";
 import Tabs from "@/components/Tabs.vue";
 import Tab from "@/components/Tab.vue";
 import DefaultPopup from "@/components/DefaultPopup";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
   components: {
     AppHeader,
@@ -137,89 +137,101 @@ export default {
           title: "모두보기",
         },
       ],
-      room: [],
+      room: []
     };
   },
   mounted() {},
   computed: {
       ...mapState("basic", ["checkPopup"]),
+       ...mapGetters("room", ["GET_ROOM"]),
   },
   created() {
   },
   methods: {
     ...mapMutations("basic", ["SET_POPUP"]),
+    managePlayer() {
+      this.$router.push("/player");
+    },
+    managePlayer2() {
+      this.$router.push("/player2");
+    },
     reload(order) {
       let room;
-      if (order === 0) {
-        room = [
-          {
+        if (order === 0) {
+          room = [];
+          if (this.GET_ROOM.title !== null) {
+          const item = {
             isProceeding: true,
-            title: "짜장면 먹으러가실 분!",
-            time: "PM 12:30",
-            content: "중화요리전문점",
-            maxPersonnel: 6,
-            currentPersonnel: 2,
-          },
-          {
-            isProceeding: true,
-            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
-            time: "PM 19:30",
-            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
-            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
-            currentPersonnel: 1,
+            title: this.GET_ROOM.title,
+            time: this.GET_ROOM.mealTime,
+            content: this.GET_ROOM.store,
+            maxPersonnel: this.GET_ROOM.personel,
+            currentPersonnel: 1
           }
-        ];
+          room.push(item)
+        } 
+        this.room = room;
       } else if (order === 1) {
         room = [
           {
-            isProceeding: true,
-            title: "짜장면 먹으러가실 분!",
-            time: "PM 12:30",
-            content: "중화요리전문점",
-            maxPersonnel: 6,
-            currentPersonnel: 2,
-          },
-           {
-            isProceeding: true,
-            title: JSON.parse(sessionStorage.getItem("roomInfo")).title,
-            time: "PM 19:30",
-            content: JSON.parse(sessionStorage.getItem("roomInfo")).store,
-            maxPersonnel: JSON.parse(sessionStorage.getItem("roomInfo")).personel,
-            currentPersonnel: 1,
-          },
-            {
             isProceeding: false,
             title: "쌀국수 어때요?",
             time: "PM 18:30",
             content: "미분당",
-            maxPersonnel: 2,
-            currentPersonnel: 1,
-          }
-        ];
-      }
-      this.room = room;
-    },
-    deleteRoom() {
-      const sampleRoom = [
-         {
-            isProceeding: true,
+            maxPersonnel: 4,
+            currentPersonnel: 3,
+          },
+          {
+             isProceeding: false,
             title: "짜장면 먹으러가실 분!",
             time: "PM 12:30",
             content: "중화요리전문점",
             maxPersonnel: 6,
-            currentPersonnel: 2,
+            currentPersonnel: 3,
+          },
+        ];
+        if (this.GET_ROOM.title !== null) {
+          const item = {
+            isProceeding: true,
+            title: this.GET_ROOM.title,
+            time: this.GET_ROOM.mealTime,
+            content: this.GET_ROOM.store,
+            maxPersonnel: this.GET_ROOM.personel,
+            currentPersonnel: 1
           }
-      ]
-       this.SET_POPUP(true);
+          room.unshift(item)
+        }
+        console.log("변경할 룸", room);
+        this.room = room;
+      }
+    },
+    deleteRoom() {
+        this.SET_POPUP(true);
+        this.popupSet.buttonType = "default";
+        this.popupSet.popType = "listDelete";
+        this.popupSet.cancelBtnText = "취소" 
         this.popupSet.title = "방 관리";
-        this.popupSet.content =
-          "방을 정말 삭제할까요?";
-        this.popupSet.popType = "defaultType";
-        this.popupSet.buttonType = "default",
-        this.popupSet.nextLink = null
-      setTimeout(() => {
-        this.room = sampleRoom;
-      }, 1500); 
+        this.popupSet.content = "방을 정말 삭제할까요?";
+        this.popupSet.confirmBtnText = "삭제";
+      
+    },
+    deleteAct() {
+        const wholeArray = JSON.parse(JSON.stringify(this.room))
+      this.removeA(wholeArray, wholeArray[0]);
+      this.room = wholeArray;
+    },
+    removeA (arr) {
+      let what
+      const a = arguments
+      let L = a.length
+      let ax
+      while (L > 1 && arr.length) {
+        what = a[--L]
+        while ((ax = arr.indexOf(what)) !== -1) {
+          arr.splice(ax, 1)
+        }
+      }
+      return arr
     },
     prev() {
       this.transData.prevUrl = "/room";
@@ -233,8 +245,6 @@ export default {
   .own-room {
     position: relative;
     padding:54px 0 0 0;
-    .tab-wrapper {
-    }
    .container {
      padding: 0 0 72px 0;
      .item {

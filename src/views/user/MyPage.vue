@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="room-function">
-        <div class="item">
+        <div class="item" @click="goWrite()">
           <div class="img-wrap">
             <img src="@/assets/images/createroom_icon.svg" />
           </div>
@@ -109,7 +109,11 @@ export default {
   },
   mounted() {},
   computed: {},
-  methods: {},
+  methods: {
+    goWrite() {
+      this.$router.push("/listRoom");
+    }
+  },
 };
 </script>
 

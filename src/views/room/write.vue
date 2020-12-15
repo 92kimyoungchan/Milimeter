@@ -203,6 +203,8 @@ export default {
   },
   methods: {
         ...mapMutations("basic", ["SET_POPUP"]),
+        ...mapMutations("room", ["SET_ROOM"]),
+        
     prev() {
       this.$router.push("/room")
     },
@@ -214,13 +216,14 @@ export default {
         mealTime: this.form.mealTime.value,
         minAge: this.form.minAge.value,
         maxAge: this.form.maxAge.value,
-        store: this.form.store.value
+        store: this.form.store.value,
+        personelStatus: false
       }
-      sessionStorage.setItem("roomInfo", JSON.stringify(roomInfo));
+      this.SET_ROOM(roomInfo);
        this.SET_POPUP(true);
         this.popupSet.title = "방 관리";
         this.popupSet.content =
-          "방 생성이 완료됬습니다. !";
+          "방 생성이 완료됬습니다!";
         this.popupSet.popType = "defaultType";
         this.popupSet.confirmBtnText = "확인";
         this.popupSet.buttonType = "alone"

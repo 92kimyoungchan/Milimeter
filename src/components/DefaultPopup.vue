@@ -37,6 +37,93 @@
           </div>
         </div>
       </div>
+      <div class="pop" v-if="popType === 'pick'">
+        <div class="context">
+          <div class="p-icon" v-if="iconUrl !== null">
+            <img :src="require(`@/assets/images/${iconUrl}`)" />
+          </div>
+          <h5 class="p-title scale-subtitle" v-html="titleMutated"></h5>
+          <p class="p-content scale-body" v-html="contentMutated"></p>
+        </div>
+        <div class="p-btn-wrap">
+          <div
+            class="item"
+            v-if="buttonType === 'default'"
+            :class="{ default: buttonType === 'default' }"
+          >
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="cancelBtnText"
+              @click="pickCancel()"
+            ></button>
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="confirmBtnText"
+              @click="pickConfirm(pickOrder, pickFlag)"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="pop" v-if="popType === 'listDelete'">
+        <div class="context">
+          <div class="p-icon" v-if="iconUrl !== null">
+            <img :src="require(`@/assets/images/${iconUrl}`)" />
+          </div>
+          <h5 class="p-title scale-subtitle" v-html="titleMutated"></h5>
+          <p class="p-content scale-body" v-html="contentMutated"></p>
+        </div>
+        <div class="p-btn-wrap">
+          <div
+            class="item"
+            v-if="buttonType === 'default'"
+            :class="{ default: buttonType === 'default' }"
+          >
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="cancelBtnText"
+              @click="listDeleteCancel()"
+            ></button>
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="confirmBtnText"
+              @click="listDeleteConfirm()"
+            ></button>
+          </div>
+        </div>
+      </div>
+      <div class="pop" v-if="popType === 'refuseApply'">
+        <div class="context">
+          <div class="p-icon" v-if="iconUrl !== null">
+            <img :src="require(`@/assets/images/${iconUrl}`)" />
+          </div>
+          <h5 class="p-title scale-subtitle" v-html="titleMutated"></h5>
+          <p class="p-content scale-body" v-html="contentMutated"></p>
+        </div>
+        <div class="p-btn-wrap">
+          <div
+            class="item"
+            v-if="buttonType === 'default'"
+            :class="{ default: buttonType === 'default' }"
+          >
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="cancelBtnText"
+              @click="refuseApplyCancel()"
+            ></button>
+            <button
+              class="scale-subtitle"
+              type="button"
+              v-text="confirmBtnText"
+              @click="refuseApplyConfirm()"
+            ></button>
+          </div>
+        </div>
+      </div>
     </template>
   </modal>
 </template>
@@ -78,6 +165,12 @@ export default {
       buttonType: {
         type: String,
       },
+      pickFlag: {
+        type: Boolean
+      },
+      pickOrder: {
+        type: String
+      }
     },
   },
   components: {
@@ -97,6 +190,8 @@ export default {
       isTopPriority: this.popupSet.isTopPriority,
       iconUrl: this.popupSet.iconUrl || null,
       buttonType: this.popupSet.buttonType || "default",
+      pickFlag: this.popupSet.pickFlag,
+      pickOrder: this.popupSet.pickOrder
     };
   },
   watch: {},
@@ -120,6 +215,20 @@ export default {
   },
   methods: {
     ...mapMutations("basic", ["SET_POPUP"]),
+    listDeleteCancel() {
+      this.SET_POPUP(false);
+    },
+    listDeleteConfirm() {
+       this.$emit("receive-deleteList")
+        this.SET_POPUP(false);
+    },
+    refuseApplyCancel(){
+        this.SET_POPUP(false);
+    },
+    refuseApplyConfirm(){
+        this.$emit("receive-refuseApply")
+        this.SET_POPUP(false);
+    },
     confirm() {
       if (this.nextLink !== null) {
         this.SET_POPUP(false);
@@ -142,8 +251,14 @@ export default {
       } else {
         this.SET_POPUP(false);
       }
-      
     },
+     pickConfirm(order, flag) {
+       this.$emit("receive-pick", order, !flag)
+        this.SET_POPUP(false);
+      },
+      pickCancel() {
+        this.SET_POPUP(false);
+      },
     callApi() {
       this.SET_POPUP(false);
       this.$emit("callApi");

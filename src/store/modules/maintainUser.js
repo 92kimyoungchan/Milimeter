@@ -17,9 +17,8 @@ const mutations = {
 };
 
 const getters = {
-
+  GET_NICK_NAME: state => state.maintaince.nickName,
   GET_JOIN_DONE: state => state.maintaince.joinDone,
-
 };
 
 const actions = {

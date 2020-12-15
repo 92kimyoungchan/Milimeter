@@ -51,7 +51,16 @@ export default {
 <style lang="scss" scoped>
 .app-wrap {
   .own-room {
+    &.whole {
+      ul.tabs__header {
+        display:none;
+        li {
+          width: 100%;
+        }
+      }
+    }
    ul.tabs__header {
+     position: relative;
         width: 100%;
     padding: 0;
     background: transparent;
@@ -60,6 +69,17 @@ export default {
     overflow: hidden;
     margin: 0;
     box-shadow: none;
+     &:after {
+            content: "";
+            height: 3px;
+            background: #d7dadc;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: .5s;
+            z-index: 1;
+      }
           li {
             font-family: "AppleSDGothicNeoSB00";
     line-height: 48px;
@@ -89,6 +109,7 @@ export default {
                 bottom: 0;
                 left: 0;
                 transition: .5s;
+                z-index: 2;
               }
             }
           }

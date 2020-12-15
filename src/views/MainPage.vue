@@ -90,7 +90,7 @@ export default {
           if (this.appLoginPassed) {
              this.$router.push("/room");
           } else {
-            this.$router.push("/about");
+            this.$router.push("/join");
           }
         });
       } catch (error) {

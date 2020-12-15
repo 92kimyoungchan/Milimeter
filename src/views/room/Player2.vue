@@ -4,7 +4,7 @@
       :transDataSet="transData"
       @prevSection="prev()"
     ></app-header>
-      <div class="own-room">
+      <div class="own-room whole">
         <tabs @reloadRoomList="reload($event)"> 
           <tab :tabData="tab[0]">
             <div class="container">
@@ -25,40 +25,12 @@
               </div>
               <div class="action">
                 <div class="a-item-wrap">
-                <div class="a-item" @click="deleteRoom()">
-                  <span class="scale-body-2">거절하기</span>
-                </div>
-                <div class="a-item">
-                  <span class="scale-body-2">수락하기</span>
-                </div>
-                
-                </div>
-              </div>
-              </div>
-            </div>
-          </tab>
-          <tab :tabData="tab[1]">
-            <div class="container">
-              <div class="item" v-for="(lisItem, index) in room" :key="index">
-              <div class="profile-complex">
-                <div class="profile">
-                  <div class="img-wrap">
-                     <img :src="require(`@/assets/images/${lisItem.img}`)" />
-                  </div>
-                  <div class="p-info">
-                    <h5 class="scale-body-2">{{ lisItem.id }}</h5>
-                    <p class="scale-caption">{{ lisItem.age }}ㆍ{{ lisItem.gender }}</p>
-                  </div>
-                </div>
-                <div class="btn-wrap">
-                  <button class="scale-body" type="button">프로필</button>
-                </div>
-              </div>
-              <div class="action">
-                <div class="a-item-wrap whole">
                 <div class="a-item">
                   <span class="scale-body-2">상세보기</span>
                 </div>  
+                 <div class="a-item">
+                  <span class="scale-body-2">매너점수 주기</span>
+                </div>
                 </div>
               </div>
               </div>
@@ -105,9 +77,6 @@ export default {
       },
       tab: [
         {
-          title: "대기중",
-        },
-        {
           title: "모두보기",
         },
       ],
@@ -125,7 +94,6 @@ export default {
     ...mapMutations("basic", ["SET_POPUP"]),
     reload(order) {
       let room;
-      if (order === 0) {
         room = [
           {
             id: "나도Nado",
@@ -146,30 +114,6 @@ export default {
             img:"profile-img.png"
           }
         ];
-      } else if (order === 1) {
-        room = [
-           {
-            id: "이준형무소",
-            age: "29",
-            gender: "남",
-            img:"yeti.jpg"
-          },
-          {
-             id: "wowuser",
-            age: "29",
-            gender: "남",
-             img:"profile-img.png"
-             
-          },
-           {
-             id: "깨달으자",
-            age: "27",
-            gender: "남",
-            img:"yeti.jpg"
-           
-          }
-        ];
-      }
       this.room = room;
     },
     deleteRoom() {

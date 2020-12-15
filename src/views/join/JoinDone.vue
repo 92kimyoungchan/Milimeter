@@ -25,7 +25,7 @@ export default {
   created() {
     
       setTimeout(() => {
-        this.$router.push("/room");
+        this.$router.push("/");
       }, 1300);
   },
   mounted() {},
